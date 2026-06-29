@@ -1,0 +1,22 @@
+# Env
+.env
+**/.env
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# SQLite
+**/*.db
+**/*.db-shm
+**/*.db-wal
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo

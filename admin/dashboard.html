@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tableau de bord · Tatina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="hazard-bar" aria-hidden="true"></div>
+
+  <div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-side">
+      <a href="../index.html" class="admin-side__brand">
+        <div class="logo-mark" aria-hidden="true">
+          <span class="rivet"></span><span class="rivet"></span>
+          <span class="rivet"></span><span class="rivet"></span>
+          TT
+        </div>
+        <div>
+          <strong>Tatina<br/>Admin</strong>
+          <small>v1.0 · 2026</small>
+        </div>
+      </a>
+
+      <nav class="admin-nav">
+        <a data-target="dashboard" class="is-active"><span class="icon">▣</span> Dashboard</a>
+        <a data-target="agenda"><span class="icon">▤</span> Agenda</a>
+        <a data-target="menu"><span class="icon">✎</span> Menu</a>
+        <a data-target="horaires"><span class="icon">⏱</span> Horaires & infos</a>
+        <a data-target="adherents"><span class="icon">▰</span> Adhérents</a>
+        <a data-target="campagnes"><span class="icon">✉</span> Campagnes</a>
+        <a data-target="assos"><span class="icon">♡</span> Assos soutenues</a>
+        <a data-target="settings"><span class="icon">⚙</span> Réglages</a>
+      </nav>
+
+      <div class="admin-side__foot">
+        <span>Connecté · <b id="adminUserLabel">admin</b></span>
+        <button id="logoutBtn">Sortir</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+
+      <!-- =========== DASHBOARD =========== -->
+      <section class="admin-section is-active" data-section="dashboard">
+        <header class="admin-header">
+          <div>
+            <h2>Dashboard</h2>
+            <p>Bienvenue. Voilà le pouls du Bistrot.</p>
+          </div>
+          <span class="badge badge--yellow">Été 2026 · semaine 27</span>
+        </header>
+
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi__label">Adhérents</div>
+            <div class="kpi__value" data-kpi="members">—</div>
+            <div class="kpi__delta">total inscrits</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi__label">Cotisations payées</div>
+            <div class="kpi__value" data-kpi="paid">—</div>
+            <div class="kpi__delta">× 15€</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi__label">Soirées à venir</div>
+            <div class="kpi__value" data-kpi="events">—</div>
+            <div class="kpi__delta">événements publiés</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi__label">Demandes groupes</div>
+            <div class="kpi__value" data-kpi="requests">—</div>
+            <div class="kpi__delta">à traiter</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Prochains événements</h3>
+          <table>
+            <thead>
+              <tr><th>Date</th><th>Événement</th><th>Statut</th></tr>
+            </thead>
+            <tbody data-dashboard-events>
+              <tr><td colspan="3" style="opacity:.5">Chargement…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =========== AGENDA =========== -->
+      <section class="admin-section" data-section="agenda">
+        <header class="admin-header">
+          <div>
+            <h2>Agenda</h2>
+            <p>Crée, édite ou archive les événements publiés sur le site.</p>
+          </div>
+          <button class="btn btn--yellow" data-new-event>+ Nouvel événement</button>
+        </header>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Date</th><th>Titre</th><th>Type</th><th>Statut</th><th>Actions</th></tr>
+            </thead>
+            <tbody data-events-list>
+              <tr><td colspan="5" style="opacity:.5">Chargement…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =========== MENU =========== -->
+      <section class="admin-section" data-section="menu">
+        <header class="admin-header">
+          <div>
+            <h2>Menu (ardoise)</h2>
+            <p>Modifie la carte affichée sur le site. La modif est visible immédiatement.</p>
+          </div>
+          <button class="btn btn--yellow" data-new-menu-item>+ Ajouter un plat</button>
+        </header>
+
+        <div data-menu-sections>
+          <p style="opacity:.5">Chargement du menu…</p>
+        </div>
+      </section>
+
+      <!-- =========== HORAIRES =========== -->
+      <section class="admin-section" data-section="horaires">
+        <header class="admin-header">
+          <div>
+            <h2>Horaires & infos</h2>
+            <p>Tout ce qui figure dans la section "Infos pratiques" du site.</p>
+          </div>
+        </header>
+
+        <div class="panel">
+          <h3>Horaires d'ouverture</h3>
+          <div class="form" style="background: transparent; border: 0; box-shadow: none; padding: 0;">
+            <div class="field-row">
+              <div class="field"><label>Lundi</label><input type="text" data-hours="lundi" /></div>
+              <div class="field"><label>Mardi</label><input type="text" data-hours="mardi" /></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Mercredi</label><input type="text" data-hours="mercredi" /></div>
+              <div class="field"><label>Jeudi</label><input type="text" data-hours="jeudi" /></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Vendredi</label><input type="text" data-hours="vendredi" /></div>
+              <div class="field"><label>Samedi</label><input type="text" data-hours="samedi" /></div>
+            </div>
+            <div class="field"><label>Dimanche</label><input type="text" data-hours="dimanche" /></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Coordonnées</h3>
+          <div class="form" style="background: transparent; border: 0; box-shadow: none; padding: 0;">
+            <div class="field"><label>Adresse</label><input type="text" data-setting="contact_address" /></div>
+            <div class="field-row">
+              <div class="field"><label>Téléphone</label><input type="tel" data-setting="contact_phone" /></div>
+              <div class="field"><label>Email</label><input type="email" data-setting="contact_email" /></div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn--yellow" data-save-settings>Enregistrer tout</button>
+      </section>
+
+      <!-- =========== ADHERENTS =========== -->
+      <section class="admin-section" data-section="adherents">
+        <header class="admin-header">
+          <div>
+            <h2>Adhérents</h2>
+            <p>120 adhérents actifs · 8 nouveaux ce mois-ci.</p>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn--yellow" data-new-member>+ Nouvel adhérent</button>
+            <button class="btn btn--ghost" data-export-csv>Exporter CSV</button>
+            <button class="btn btn--ghost" data-export-xlsx>Exporter Excel</button>
+            <label class="btn btn--ghost" style="cursor:pointer;" title="Importer CSV ou XLSX">
+              Importer…
+              <input type="file" data-import-file accept=".csv,.xlsx,.xls" style="display:none;" />
+            </label>
+          </div>
+        </header>
+
+        <div class="toolbar">
+          <input type="search" placeholder="Rechercher un adhérent…" data-members-search />
+          <select data-members-status>
+            <option value="">Tous les statuts</option>
+            <option value="paid">Cotisation payée</option>
+            <option value="unpaid">Non payé</option>
+          </select>
+          <div class="spacer"></div>
+          <span class="badge" data-members-count>—</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>N°</th><th>Nom</th><th>Email</th><th>Téléphone</th><th>Paiement</th><th>Statut</th><th>Actions</th></tr>
+            </thead>
+            <tbody data-members-list>
+              <tr><td colspan="7" style="opacity:.5">Chargement…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =========== CAMPAGNES =========== -->
+      <section class="admin-section" data-section="campagnes">
+        <header class="admin-header">
+          <div>
+            <h2>Campagnes Email & SMS</h2>
+            <p>Préviens les adhérents d'un nouvel événement, d'un changement, d'un coup de cœur.</p>
+          </div>
+        </header>
+
+        <div class="composer">
+          <div>
+            <div class="panel">
+              <h3>Nouvelle campagne</h3>
+              <form id="campaignForm">
+                <div class="field-row">
+                  <div class="field">
+                    <label>Canal</label>
+                    <select id="cChannel">
+                      <option value="email">Email</option>
+                      <option value="sms">SMS</option>
+                      <option value="both">Email + SMS</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label>Cible</label>
+                    <select id="cTarget">
+                      <option value="all">Tous les adhérents</option>
+                      <option value="active">Cotisation payée</option>
+                      <option value="torenew">À renouveler</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>Objet / Titre</label>
+                  <input type="text" id="cSubject" value="Concert vendredi 19 · Anouk Béton" />
+                </div>
+                <div class="field">
+                  <label>Message</label>
+                  <textarea id="cBody" rows="8">Salut la tribu Tatina !
+
+Vendredi 19, on accueille Anouk Béton & The Soldering Hearts pour une soirée folk-électro.
+
+Ouverture des portes jaunes à 19h, concert à 20h30.
+On compte sur vous — et sur vos copains.
+
+À très vite,
+L'équipe Tatina</textarea>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                  <button type="button" class="btn btn--ghost">Enregistrer brouillon</button>
+                  <button type="submit" class="btn btn--yellow">Envoyer maintenant</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="preview" id="preview">
+            <div class="from">De : Tatina &lt;bonjour@bistrot-tatina.fr&gt;<br/>Pour : 120 destinataires</div>
+            <h4 id="pSubject">Concert vendredi 19 · Anouk Béton</h4>
+            <div class="body" id="pBody">Salut la tribu Tatina !
+
+Vendredi 19, on accueille Anouk Béton & The Soldering Hearts pour une soirée folk-électro.
+
+Ouverture des portes jaunes à 19h, concert à 20h30.
+On compte sur vous — et sur vos copains.
+
+À très vite,
+L'équipe Tatina</div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top: 30px;">
+          <h3>Historique des envois</h3>
+          <table>
+            <thead><tr><th>Date</th><th>Canal</th><th>Sujet</th><th>Destinataires</th><th>Statut</th></tr></thead>
+            <tbody data-campaigns-list>
+              <tr><td colspan="5" style="opacity:.5">Chargement…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =========== ASSOS =========== -->
+      <section class="admin-section" data-section="assos">
+        <header class="admin-header">
+          <div>
+            <h2>Assos soutenues</h2>
+            <p>Mets à jour les montants reversés et la liste des partenaires.</p>
+          </div>
+          <button class="btn btn--yellow" data-new-asso>+ Ajouter une asso</button>
+        </header>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Asso</th><th>Reversé 2026</th><th>Site</th><th>Actions</th></tr></thead>
+            <tbody data-assos-list>
+              <tr><td colspan="4" style="opacity:.5">Chargement…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- =========== SETTINGS =========== -->
+      <section class="admin-section" data-section="settings">
+        <header class="admin-header">
+          <div>
+            <h2>Réglages</h2>
+            <p>Quelques boutons pour bricoler la maison.</p>
+          </div>
+        </header>
+
+        <div class="panel">
+          <h3>Visibilité</h3>
+          <div class="toggles">
+            <label><span>Afficher les chiffres de transparence sur le site</span><input type="checkbox" data-toggle="transparency" /></label>
+            <label><span>Activer le formulaire de pré-adhésion</span><input type="checkbox" data-toggle="adhesion" /></label>
+            <label><span>Activer la programmation publique de concert</span><input type="checkbox" data-toggle="concerts" /></label>
+            <label><span>Mode "fermeture estivale exceptionnelle"</span><input type="checkbox" data-toggle="fermeture" /></label>
+          </div>
+          <button type="button" class="btn btn--yellow" style="margin-top:16px;" data-save-settings>Enregistrer</button>
+        </div>
+
+        <div class="panel">
+          <h3>Compte</h3>
+          <form class="form" style="background: transparent; border: 0; box-shadow: none; padding: 0;">
+            <div class="field"><label>Identifiant</label><input type="text" id="accountUserField" value="admin" readonly /></div>
+            <div class="field"><label>Nouveau mot de passe</label><input type="password" placeholder="••••••••" /></div>
+            <button type="button" class="btn btn--yellow">Mettre à jour</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- MODAL CONFIRMATION -->
+  <div class="modal-overlay" id="confirmModal" hidden>
+    <div class="modal-card modal-card--sm">
+      <h3>Confirmation</h3>
+      <p id="confirmMsg"></p>
+      <div class="modal-footer">
+        <button class="btn btn--ghost" id="confirmCancel">Annuler</button>
+        <button class="btn btn--danger" id="confirmOk">Supprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ADHÉRENT -->
+  <div class="modal-overlay" id="memberModal" hidden>
+    <div class="modal-card">
+      <h3 id="memberModalTitle">Nouvel adhérent</h3>
+      <form id="memberForm" class="form" style="background:transparent;border:0;box-shadow:none;padding:0;" novalidate>
+        <div class="field-row">
+          <div class="field"><label>Prénom *</label><input name="first_name" required autocomplete="off" /></div>
+          <div class="field"><label>Nom *</label><input name="last_name" required autocomplete="off" /></div>
+        </div>
+        <div class="field"><label>Email *</label><input type="email" name="email" required autocomplete="off" /></div>
+        <div class="field"><label>Téléphone</label><input type="tel" name="phone" autocomplete="off" /></div>
+        <div class="checkbox-row">
+          <label class="checkbox-label"><input type="checkbox" name="payment_status" /><span>Cotisation payée</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="consent" /><span>Consentement RGPD</span></label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn--ghost" id="memberModalCancel">Annuler</button>
+          <button type="submit" class="btn btn--yellow" id="memberModalSubmit">Créer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL MENU -->
+  <div class="modal-overlay" id="menuModal" hidden>
+    <div class="modal-card modal-card--sm">
+      <h3>Ajouter un plat</h3>
+      <form id="menuForm" class="form" style="background:transparent;border:0;box-shadow:none;padding:0;" novalidate>
+        <div class="field"><label>Catégorie *</label><input name="category" required placeholder="À grignoter, Du robinet…" autocomplete="off" /></div>
+        <div class="field"><label>Intitulé *</label><input name="label" required autocomplete="off" /></div>
+        <div class="field"><label>Prix *</label><input name="price" required placeholder="5€, 4→6€" autocomplete="off" /></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn--ghost" id="menuModalCancel">Annuler</button>
+          <button type="submit" class="btn btn--yellow">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL ASSO -->
+  <div class="modal-overlay" id="assoModal" hidden>
+    <div class="modal-card modal-card--sm">
+      <h3>Ajouter une association</h3>
+      <form id="assoForm" class="form" style="background:transparent;border:0;box-shadow:none;padding:0;" novalidate>
+        <div class="field"><label>Nom *</label><input name="name" required autocomplete="off" /></div>
+        <div class="field"><label>Description</label><textarea name="description" rows="3" placeholder="Ce que fait l'association…"></textarea></div>
+        <div class="field"><label>Montant reversé 2026 (€)</label><input type="number" name="amount_2026" value="0" min="0" /></div>
+        <div class="field"><label>Site web</label><input type="url" name="website_url" placeholder="https://…" /></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn--ghost" id="assoModalCancel">Annuler</button>
+          <button type="submit" class="btn btn--yellow">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

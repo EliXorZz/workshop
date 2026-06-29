@@ -1,0 +1,13 @@
+# Env
+.env
+
+# Dependencies
+node_modules/
+
+# SQLite
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# OS
+.DS_Store

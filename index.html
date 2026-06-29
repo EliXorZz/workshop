@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Le Bistrot de Tatina — Bar associatif, containers & chaudronnerie · Annecy</title>
+  <meta name="description" content="Bar associatif d'Annecy installé dans d'anciens containers. Concerts, DJ sets, food trucks. Les bénéfices vont à la lutte contre le cancer." />
+  <meta name="theme-color" content="#0F0F0F" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@500;700&family=Special+Elite&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- BARRE RUBALISE TOP -->
+  <div class="hazard-bar" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo" aria-label="Accueil — Le Bistrot de Tatina">
+      <span class="logo-mark" aria-hidden="true">
+        <span class="rivet"></span><span class="rivet"></span>
+        <span class="rivet"></span><span class="rivet"></span>
+        TT
+      </span>
+      <span class="nav__brand">Le Bistrot<br/>de Tatina</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Navigation principale">
+      <a href="#histoire">Histoire</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#menu">Menu</a>
+      <a href="#concert">Concert</a>
+      <a href="#assos">Nos assos</a>
+      <a href="#infos">Infos</a>
+    </nav>
+
+    <a href="#adhesion" class="btn btn--yellow nav__cta">
+      Adhérer · 15€
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="square"/></svg>
+    </a>
+
+    <button class="nav__burger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- HERO : CONTAINER QUI S'OUVRE -->
+  <section class="hero" id="top">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__grid"></div>
+      <div class="hero__noise"></div>
+    </div>
+
+    <div class="container-doors" aria-hidden="true">
+      <div class="door door--left">
+        <div class="door__panel">
+          <span class="door__rivet"></span><span class="door__rivet"></span>
+          <span class="door__rivet"></span><span class="door__rivet"></span>
+          <div class="door__stencil">TATINA — 04</div>
+          <div class="door__bars"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="door door--right">
+        <div class="door__panel">
+          <span class="door__rivet"></span><span class="door__rivet"></span>
+          <span class="door__rivet"></span><span class="door__rivet"></span>
+          <div class="door__stencil">BISTROT · ASSO · 2022</div>
+          <div class="door__bars"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__kicker">
+        <span class="dot"></span> Bar associatif · Annecy · depuis 2022
+      </div>
+      <h1 class="hero__title">
+        <span class="line">On a soudé</span>
+        <span class="line"><em>un bistrot</em></span>
+        <span class="line">dans un <mark>container</mark>.</span>
+      </h1>
+      <p class="hero__sub">
+        Containers réaménagés, portes jaunes, ambiance chaudronnerie. <br/>
+        Concerts, DJ sets, food trucks — les bénéfices vont à la lutte contre le cancer.
+      </p>
+
+      <div class="hero__ctas">
+        <a class="btn btn--yellow btn--lg" href="#agenda">
+          Voir l'agenda
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="square"/></svg>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="#histoire">L'histoire du lieu</a>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span class="arrow">▼</span>
+      </div>
+    </div>
+
+    <!-- Marquee bas -->
+    <div class="marquee marquee--hero" aria-hidden="true">
+      <div class="marquee__track">
+        <span>JEUDI · VENDREDI</span><span aria-hidden="true">✦</span>
+        <span>BIÈRES PRESSION</span><span aria-hidden="true">✦</span>
+        <span>DJ · ROCK · FOOD TRUCKS</span><span aria-hidden="true">✦</span>
+        <span>120 ADHÉRENTS</span><span aria-hidden="true">✦</span>
+        <span>BÉNÉFICES REVERSÉS</span><span aria-hidden="true">✦</span>
+        <span>JEUDI · VENDREDI</span><span aria-hidden="true">✦</span>
+        <span>BIÈRES PRESSION</span><span aria-hidden="true">✦</span>
+        <span>DJ · ROCK · FOOD TRUCKS</span><span aria-hidden="true">✦</span>
+        <span>120 ADHÉRENTS</span><span aria-hidden="true">✦</span>
+        <span>BÉNÉFICES REVERSÉS</span><span aria-hidden="true">✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTE -->
+  <section class="manifest" id="manifest">
+    <div class="wrap">
+      <div class="section-label">
+        <span class="num">01</span>
+        <span class="tag">MANIFESTE</span>
+      </div>
+      <p class="manifest__text reveal">
+        Pas une enseigne. <em>Une cour de chantier</em>.<br/>
+        Pas un bar. <em>Un container</em>.<br/>
+        Pas un patron. <em>Cent-vingt bénévoles</em>.<br/>
+        Tu pousses la porte jaune, t'es chez toi.
+      </p>
+      <div class="manifest__signature reveal">— l'équipe Tatina</div>
+    </div>
+  </section>
+
+  <!-- HISTOIRE -->
+  <section class="story" id="histoire">
+    <div class="wrap">
+      <div class="section-label section-label--light">
+        <span class="num">02</span>
+        <span class="tag">L'HISTOIRE</span>
+      </div>
+
+      <div class="story__grid">
+        <div class="story__text reveal">
+          <h2 class="h-display">D'une ancienne cour <br/><span class="hl">à un repère atypique.</span></h2>
+          <p>
+            En 2022, des amis ont eu une idée un peu folle : transformer la cour
+            d'un atelier de chaudronnerie en bistrot associatif. Quatre containers,
+            une entrée jaune signature, des chaises dépareillées, et un esprit <em>cantine d'usine</em> remixé.
+          </p>
+          <p>
+            Le projet a été lancé par les parents fondateurs (la soixantaine, l'énergie de la vingtaine).
+            Aujourd'hui, c'est <strong id="statMembersText">120 adhérents</strong>, des soirées qui débordent jusqu'au parking,
+            et chaque euro de bénéfice qui repart vers les associations locales.
+          </p>
+          <a href="#assos" class="link-underline">Voir les associations soutenues →</a>
+        </div>
+
+        <div class="story__numbers">
+          <div class="stat reveal" data-count="2022">
+            <span class="stat__value"><span class="counter" data-to="2022" data-decimals="0">0</span></span>
+            <span class="stat__label">année de naissance</span>
+          </div>
+          <div class="stat reveal" data-count="120">
+            <span class="stat__value"><span class="counter" data-to="120" id="statMembers">0</span></span>
+            <span class="stat__label">adhérents</span>
+          </div>
+          <div class="stat reveal" data-count="4">
+            <span class="stat__value"><span class="counter" data-to="4">0</span></span>
+            <span class="stat__label">containers réaménagés</span>
+          </div>
+          <div class="stat reveal" data-count="100">
+            <span class="stat__value"><span class="counter" data-to="100">0</span><i>%</i></span>
+            <span class="stat__label">bénéfices reversés</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bande transparence -->
+      <div class="transparence reveal">
+        <div class="transparence__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6l9-4z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        </div>
+        <div>
+          <strong>Transparence totale.</strong> Chaque année, les comptes de l'association sont rendus publics.
+          <a href="#" class="link-underline">Télécharger le bilan 2025 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="agenda" id="agenda">
+    <div class="wrap">
+      <div class="section-label">
+        <span class="num">03</span>
+        <span class="tag">AGENDA</span>
+      </div>
+
+      <header class="agenda__head">
+        <h2 class="h-display">Ce qui se trame <br/><span class="hl">sous la tôle.</span></h2>
+        <div class="agenda__filters" role="tablist">
+          <button class="chip is-active" data-filter="all" role="tab">Tout</button>
+          <button class="chip" data-filter="concert" role="tab">Concerts</button>
+          <button class="chip" data-filter="dj" role="tab">DJ sets</button>
+          <button class="chip" data-filter="food" role="tab">Food trucks</button>
+          <button class="chip" data-filter="hors" role="tab">Hors les murs</button>
+        </div>
+      </header>
+
+      <div class="agenda__list" id="agendaList">
+
+        <article class="event reveal" data-type="concert">
+          <div class="event__date">
+            <span class="event__day">04</span>
+            <span class="event__mo">JUI</span>
+          </div>
+          <div class="event__main">
+            <span class="event__tag tag--concert">Rock · Concert</span>
+            <h3>Les Soudeurs du Dimanche</h3>
+            <p>Trio rock garage local, riffs gras et fûts qui valsent. Première partie : Fanny K.</p>
+            <div class="event__meta">
+              <span>Jeudi · 20h30 → 23h30</span>
+              <span>Entrée libre / participation</span>
+            </div>
+          </div>
+          <a href="#" class="event__cta" aria-label="Plus d'infos">→</a>
+        </article>
+
+        <article class="event reveal" data-type="dj">
+          <div class="event__date">
+            <span class="event__day">05</span>
+            <span class="event__mo">JUI</span>
+          </div>
+          <div class="event__main">
+            <span class="event__tag tag--dj">DJ Set</span>
+            <h3>Atelier Disco · Marlène Tournevis</h3>
+            <p>House minimale et boules à facettes sur tôle ondulée. Friperie pop-up à partir de 19h.</p>
+            <div class="event__meta">
+              <span>Vendredi · 21h → 01h</span>
+              <span>Food truck : Le Gras est Beau</span>
+            </div>
+          </div>
+          <a href="#" class="event__cta">→</a>
+        </article>
+
+        <article class="event reveal" data-type="food">
+          <div class="event__date">
+            <span class="event__day">11</span>
+            <span class="event__mo">JUI</span>
+          </div>
+          <div class="event__main">
+            <span class="event__tag tag--food">Food Truck</span>
+            <h3>Tacos Chaudronnés × Bières du Massif</h3>
+            <p>Carte courte, brassins locaux. On déborde sur le parking. Tables hautes en touret.</p>
+            <div class="event__meta">
+              <span>Jeudi · 18h → 23h</span>
+              <span>Sans réservation</span>
+            </div>
+          </div>
+          <a href="#" class="event__cta">→</a>
+        </article>
+
+        <article class="event reveal" data-type="concert">
+          <div class="event__date">
+            <span class="event__day">19</span>
+            <span class="event__mo">JUI</span>
+          </div>
+          <div class="event__main">
+            <span class="event__tag tag--concert">Concert · Folk</span>
+            <h3>Anouk Béton & The Soldering Hearts</h3>
+            <p>Folk-électro, voix chaude et samples de marteau-piqueur. Première partie ouverte.</p>
+            <div class="event__meta">
+              <span>Vendredi · 20h → 23h</span>
+              <span>Chapeau au profit de la Ligue</span>
+            </div>
+          </div>
+          <a href="#" class="event__cta">→</a>
+        </article>
+
+        <article class="event reveal" data-type="hors">
+          <div class="event__date">
+            <span class="event__day">26</span>
+            <span class="event__mo">JUI</span>
+          </div>
+          <div class="event__main">
+            <span class="event__tag tag--hors">Hors les murs</span>
+            <h3>Tatina au Pâquier · pique-nique solidaire</h3>
+            <p>On sort les transats et les enceintes. Vente de bracelets au profit de l'hôpital d'Annecy.</p>
+            <div class="event__meta">
+              <span>Samedi · 14h → 19h</span>
+              <span>Pâquier d'Annecy</span>
+            </div>
+          </div>
+          <a href="#" class="event__cta">→</a>
+        </article>
+
+        <article class="event reveal" data-type="dj">
+          <div class="event__date">
+            <span class="event__day">02</span>
+            <span class="event__mo">AOÛ</span>
+          </div>
+          <div class="event__main">
+            <span class="event__tag tag--dj">DJ Set</span>
+            <h3>Hangar Wave · Soirée 80s</h3>
+            <p>Synthés, vestes en cuir et néons. Concours du meilleur look chantier.</p>
+            <div class="event__meta">
+              <span>Vendredi · 21h → 02h</span>
+              <span>Dress code optionnel</span>
+            </div>
+          </div>
+          <a href="#" class="event__cta">→</a>
+        </article>
+
+      </div>
+
+      <p class="agenda__note">
+        Les <em>réservations se font par téléphone</em>, comme dans un vrai bistrot. <a href="#infos" class="link-underline">Voir le numéro →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <div class="wrap">
+      <div class="section-label section-label--light">
+        <span class="num">04</span>
+        <span class="tag">À L'ARDOISE</span>
+      </div>
+
+      <div class="menu__board">
+        <div class="menu__board-bg" aria-hidden="true"></div>
+
+        <div class="menu__head">
+          <h2 class="chalk">Au menu, ce soir</h2>
+          <p class="chalk chalk--small">Carte courte, produits du coin, prix qui causent.</p>
+        </div>
+
+        <div class="menu__cols">
+          <div class="menu__col">
+            <h3 class="chalk chalk--cat">À grignoter</h3>
+            <ul class="menu__list chalk">
+              <li><span>Planche chaudronnée — charcuterie & fromages d'ici</span><b>14€</b></li>
+              <li><span>Houmous maison, légumes du marché, pain grillé</span><b>7€</b></li>
+              <li><span>Frites maison, mayo perso</span><b>5€</b></li>
+              <li><span>Olives de Nyons, amandes torréfiées</span><b>4€</b></li>
+            </ul>
+          </div>
+
+          <div class="menu__col">
+            <h3 class="chalk chalk--cat">Du robinet</h3>
+            <ul class="menu__list chalk">
+              <li><span>Pression du moment — brassée à 12 km</span><b>4€</b></li>
+              <li><span>IPA locale, 5 cl à 25 cl</span><b>4→6€</b></li>
+              <li><span>Verre de blanc Savoie · roussette</span><b>4€</b></li>
+              <li><span>Diabolo · sirop maison sureau / menthe</span><b>3€</b></li>
+            </ul>
+          </div>
+
+          <div class="menu__col">
+            <h3 class="chalk chalk--cat">Sans alcool</h3>
+            <ul class="menu__list chalk">
+              <li><span>Citronnade pressée minute</span><b>3,5€</b></li>
+              <li><span>Kombucha de la maison voisine</span><b>4€</b></li>
+              <li><span>Café — torréfaction Annecy</span><b>1,5€</b></li>
+              <li><span>Spritz sans alcool · romarin / pamplemousse</span><b>5€</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="menu__foot chalk chalk--small">
+          ✦ La carte change selon l'humeur et les producteurs. Le menu officiel reste celui collé sur la porte jaune.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCERT FORM -->
+  <section class="concert" id="concert">
+    <div class="wrap concert__wrap">
+      <div class="concert__intro">
+        <div class="section-label">
+          <span class="num">05</span>
+          <span class="tag">PROGRAMMER UN CONCERT</span>
+        </div>
+        <h2 class="h-display">T'as un groupe ? <br/><span class="hl">On a une scène en tôle.</span></h2>
+        <p>
+          On programme du rock, du folk, de l'électro, du chanson, du tout ce qu'on n'a jamais entendu.
+          Envoie-nous un mot, on revient vers toi sous 7 jours.
+        </p>
+        <ul class="concert__bullets">
+          <li><span class="dot"></span> Backline minimal fourni (ampli basse + guitare + batterie)</li>
+          <li><span class="dot"></span> Petite jauge, ambiance proche du public</li>
+          <li><span class="dot"></span> Repas + boissons compris, défraiement possible</li>
+        </ul>
+      </div>
+
+      <form class="form concert__form" id="concertForm" novalidate>
+        <h3 class="form__title">Fiche groupe</h3>
+
+        <div class="field">
+          <label for="bandName">Nom du groupe / projet</label>
+          <input type="text" id="bandName" name="bandName" required placeholder="Les Soudeurs du Dimanche" />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="bandStyle">Style</label>
+            <select id="bandStyle" name="bandStyle" required>
+              <option value="">—</option>
+              <option>Rock / Garage</option>
+              <option>Folk / Songwriter</option>
+              <option>Électro / DJ set</option>
+              <option>Chanson</option>
+              <option>Jazz / Soul</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bandSize">Combien sur scène ?</label>
+            <input type="number" id="bandSize" name="bandSize" min="1" max="20" placeholder="3" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="bandLink">Lien d'écoute (YouTube, Bandcamp, Spotify…)</label>
+          <input type="url" id="bandLink" name="bandLink" required placeholder="https://..." />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="bandEmail">Ton email</label>
+            <input type="email" id="bandEmail" name="bandEmail" required placeholder="contact@groupe.fr" />
+          </div>
+          <div class="field">
+            <label for="bandPhone">Téléphone</label>
+            <input type="tel" id="bandPhone" name="bandPhone" placeholder="06 …" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="bandMsg">Quelques mots</label>
+          <textarea id="bandMsg" name="bandMsg" rows="4" placeholder="Disponibilités, fiche technique, anecdote, blague de chantier…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--yellow btn--lg">
+          Envoyer la demande
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="square"/></svg>
+        </button>
+        <p class="form__note" data-form-feedback></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- INFOS PRATIQUES -->
+  <section class="infos" id="infos">
+    <div class="wrap">
+      <div class="section-label section-label--light">
+        <span class="num">06</span>
+        <span class="tag">INFOS PRATIQUES</span>
+      </div>
+
+      <div class="infos__grid">
+        <div class="infos__card reveal">
+          <div class="infos__icon">⏱</div>
+          <h3>Horaires d'été</h3>
+          <ul class="schedule">
+            <li><span>Lun – Mer</span><span>Fermé</span></li>
+            <li class="is-open"><span>Jeudi</span><span>18h → 00h</span></li>
+            <li class="is-open"><span>Vendredi</span><span>18h → 01h</span></li>
+            <li><span>Samedi</span><span>Événements ponctuels</span></li>
+            <li><span>Dimanche</span><span>Fermé</span></li>
+          </ul>
+          <p class="muted">En hiver, des soirées spéciales sont annoncées dans l'agenda.</p>
+        </div>
+
+        <div class="infos__card reveal">
+          <div class="infos__icon">📍</div>
+          <h3>Où nous trouver</h3>
+          <p class="address">
+            <strong>Cour de l'atelier — Chaudronnerie</strong><br/>
+            Rue des Soudeurs, 74000 Annecy<br/>
+            <em>Cherche les portes jaunes.</em>
+          </p>
+          <a href="#" class="link-underline">Itinéraire (Maps) →</a>
+        </div>
+
+        <div class="infos__card reveal">
+          <div class="infos__icon">☎</div>
+          <h3>Réservation</h3>
+          <p>
+            Pas de réservation en ligne, comme un vrai bistrot.<br/>
+            Appelez-nous, c'est plus chaleureux.
+          </p>
+          <a href="tel:+33450000000" class="phone-big">04 50 00 00 00</a>
+        </div>
+
+        <div class="infos__card reveal">
+          <div class="infos__icon">✉</div>
+          <h3>Nous écrire</h3>
+          <p>Pour la presse, les partenariats ou un coup de gueule constructif.</p>
+          <a href="mailto:bonjour@bistrot-tatina.fr" class="link-underline">bonjour@bistrot-tatina.fr →</a>
+          <div class="socials">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="TikTok">TT</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSOS SOUTENUES -->
+  <section class="assos" id="assos">
+    <div class="wrap">
+      <div class="section-label">
+        <span class="num">07</span>
+        <span class="tag">ASSOS SOUTENUES</span>
+      </div>
+
+      <h2 class="h-display">Chaque pinte tirée <br/><span class="hl">tire la corde du bien.</span></h2>
+      <p class="lead">
+        100% des bénéfices du Bistrot sont reversés à des associations locales
+        qui luttent contre le cancer et accompagnent les patients et leurs proches.
+      </p>
+
+      <div class="assos__grid">
+
+        <article class="asso reveal">
+          <div class="asso__head">
+            <div class="asso__logo">CH</div>
+            <h3>Hôpital d'Annecy · CHANGE</h3>
+          </div>
+          <p>Soutien à l'unité d'oncologie : matériel de confort, salles d'attente repensées, accompagnement des familles.</p>
+          <div class="asso__bar"><span style="--p:62%"></span></div>
+          <div class="asso__meta">
+            <span><b>6 200 €</b> reversés en 2025</span>
+          </div>
+        </article>
+
+        <article class="asso reveal">
+          <div class="asso__head">
+            <div class="asso__logo">LC</div>
+            <h3>Ligue contre le cancer · 74</h3>
+          </div>
+          <p>Prévention, recherche, accompagnement des malades à domicile. Partenaire historique du Bistrot depuis 2023.</p>
+          <div class="asso__bar"><span style="--p:48%"></span></div>
+          <div class="asso__meta">
+            <span><b>4 800 €</b> reversés en 2025</span>
+          </div>
+        </article>
+
+        <article class="asso reveal">
+          <div class="asso__head">
+            <div class="asso__logo">AP</div>
+            <h3>Aide aux Personnes — Annecy</h3>
+          </div>
+          <p>Sorties, repas, ateliers pour personnes isolées ou en convalescence. Une part de chaque soirée leur revient.</p>
+          <div class="asso__bar"><span style="--p:31%"></span></div>
+          <div class="asso__meta">
+            <span><b>3 100 €</b> reversés en 2025</span>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARTENAIRES & CHIFFRES -->
+  <section class="partners">
+    <div class="wrap">
+      <h2 class="partners__title">Nos partenaires de chantier</h2>
+      <div class="marquee marquee--partners" aria-hidden="true">
+        <div class="marquee__track">
+          <span>ATELIER CHAUDRONNERIE LACHAT</span><span aria-hidden="true">+</span>
+          <span>BRASSERIE DU MASSIF</span><span aria-hidden="true">+</span>
+          <span>BOULANGERIE LE LEVAIN</span><span aria-hidden="true">+</span>
+          <span>MAIRIE D'ANNECY</span><span aria-hidden="true">+</span>
+          <span>LIGUE CONTRE LE CANCER 74</span><span aria-hidden="true">+</span>
+          <span>HÔPITAL D'ANNECY · CHANGE</span><span aria-hidden="true">+</span>
+          <span>FERME DES ARAVIS</span><span aria-hidden="true">+</span>
+          <span>ATELIER CHAUDRONNERIE LACHAT</span><span aria-hidden="true">+</span>
+          <span>BRASSERIE DU MASSIF</span><span aria-hidden="true">+</span>
+          <span>BOULANGERIE LE LEVAIN</span><span aria-hidden="true">+</span>
+          <span>MAIRIE D'ANNECY</span><span aria-hidden="true">+</span>
+          <span>LIGUE CONTRE LE CANCER 74</span><span aria-hidden="true">+</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADHESION -->
+  <section class="adhesion" id="adhesion">
+    <div class="wrap adhesion__wrap">
+
+      <div class="adhesion__visual" aria-hidden="true">
+        <div class="card-id">
+          <div class="card-id__corner">
+            <span class="rivet"></span><span class="rivet"></span>
+            <span class="rivet"></span><span class="rivet"></span>
+          </div>
+          <div class="card-id__top">
+            <span>CARTE D'ADHÉRENT · 2026</span>
+            <span>N° <i id="cardNum">— — —</i></span>
+          </div>
+          <div class="card-id__body">
+            <div class="card-id__name">
+              <span id="cardName">Votre nom</span>
+              <small>membre actif</small>
+            </div>
+            <div class="card-id__seal">15€</div>
+          </div>
+          <div class="card-id__foot">
+            <span>LE BISTROT DE TATINA — ANNECY</span>
+            <span>VALABLE 1 AN</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="adhesion__form">
+        <div class="section-label">
+          <span class="num">08</span>
+          <span class="tag">DEVENIR MEMBRE</span>
+        </div>
+        <h2 class="h-display">Une carte, une<br/><span class="hl">tribu de soudeurs.</span></h2>
+        <p>
+          Pour <strong>15€ par an</strong>, vous rejoignez l'asso, vous accédez aux soirées privées,
+          vous recevez les programmes et — surtout — vous soutenez nos causes.
+        </p>
+
+        <form class="form" id="adhesionForm" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="aFirst">Prénom</label>
+              <input type="text" id="aFirst" name="firstName" required />
+            </div>
+            <div class="field">
+              <label for="aLast">Nom</label>
+              <input type="text" id="aLast" name="lastName" required />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="aEmail">Email</label>
+              <input type="email" id="aEmail" name="email" required />
+            </div>
+            <div class="field">
+              <label for="aPhone">Téléphone (SMS)</label>
+              <input type="tel" id="aPhone" name="phone" placeholder="06 …" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="aBirth">Date de naissance</label>
+            <input type="date" id="aBirth" name="birth" />
+          </div>
+
+          <fieldset class="check-list">
+            <legend>Je veux recevoir</legend>
+            <label class="check"><input type="checkbox" checked /> <span>Le programme par email</span></label>
+            <label class="check"><input type="checkbox" /> <span>Les rappels par SMS</span></label>
+            <label class="check"><input type="checkbox" /> <span>Les invitations aux apéros privés</span></label>
+          </fieldset>
+
+          <label class="check check--legal">
+            <input type="checkbox" required />
+            <span>J'accepte le règlement de l'association et le traitement de mes données (RGPD).</span>
+          </label>
+
+          <button type="submit" class="btn btn--yellow btn--lg">
+            Pré-adhérer · 15€
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="square"/></svg>
+          </button>
+          <p class="form__note" data-form-feedback>Le paiement se finalise sur place, à la porte jaune.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap footer__wrap">
+      <div class="footer__brand">
+        <div class="logo-mark logo-mark--lg" aria-hidden="true">
+          <span class="rivet"></span><span class="rivet"></span>
+          <span class="rivet"></span><span class="rivet"></span>
+          TT
+        </div>
+        <p>
+          <strong>Le Bistrot de Tatina</strong> — bar associatif d'Annecy.<br/>
+          On a soudé un bistrot dans un container. On y reste.
+        </p>
+      </div>
+
+      <div class="footer__cols">
+        <div>
+          <h4>Visite</h4>
+          <a href="#histoire">L'histoire</a>
+          <a href="#agenda">Agenda</a>
+          <a href="#menu">Menu</a>
+          <a href="#assos">Nos assos</a>
+        </div>
+        <div>
+          <h4>Asso</h4>
+          <a href="#adhesion">Adhérer</a>
+          <a href="#">Bilan 2025 (PDF)</a>
+          <a href="#">Statuts</a>
+          <a href="admin/index.html">Espace gestion</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="tel:+33450000000">04 50 00 00 00</a>
+          <a href="mailto:bonjour@bistrot-tatina.fr">bonjour@bistrot-tatina.fr</a>
+          <a href="#concert">Programmer un concert</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2026 Asso Le Bistrot de Tatina · SIRET ███ ███ ███ 00012</span>
+      <span class="footer__chalk">Conçu sur un coin de touret — Annecy</span>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/script.js" defer></script>
+</body>
+</html>

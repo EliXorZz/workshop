@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Espace gestion · Le Bistrot de Tatina</title>
+  <meta name="theme-color" content="#0F0F0F" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin-login">
+  <div class="hazard-bar" aria-hidden="true"></div>
+
+  <div class="login-shell">
+    <a href="../index.html" class="login-back">← Retour au site</a>
+
+    <div class="login-card">
+      <div class="login-card__head">
+        <div class="logo-mark logo-mark--lg" aria-hidden="true">
+          <span class="rivet"></span><span class="rivet"></span>
+          <span class="rivet"></span><span class="rivet"></span>
+          TT
+        </div>
+        <h1>Espace<br/>gestion</h1>
+        <p>Réservé à l'équipe Tatina. Login unique, partage de l'asso.</p>
+      </div>
+
+      <form id="loginForm" class="form" novalidate>
+        <div class="field">
+          <label for="user">Identifiant</label>
+          <input type="text" id="user" name="user" required autocomplete="username" value="admin" />
+        </div>
+        <div class="field">
+          <label for="pass">Mot de passe</label>
+          <input type="password" id="pass" name="pass" required autocomplete="current-password" />
+        </div>
+
+        <button type="submit" class="btn btn--yellow btn--lg" style="width: 100%; justify-content: center;">
+          Ouvrir le container
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="square"/></svg>
+        </button>
+
+        <p class="form__note" id="loginNote">Identifiant et mot de passe fournis par l'équipe.</p>
+      </form>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
