@@ -1,0 +1,13 @@
+{
+  "name": "bistrot-tatina-frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "nuxt": "^3.15.0"
+  }
+}
