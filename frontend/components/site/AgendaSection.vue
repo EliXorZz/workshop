@@ -112,7 +112,7 @@ function visibleFilter(key: string) {
       <div class="agenda__list" id="agendaList">
         <template v-if="filtered.length === 0">
           <p class="agenda__note" style="text-align:center;padding:60px 0;">
-            Aucun événement à venir pour l'instant — revenez bientôt !
+            Aucun événement à venir pour l'instant. Revenez bientôt !
           </p>
         </template>
         <template v-else>

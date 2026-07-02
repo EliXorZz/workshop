@@ -28,7 +28,7 @@ defineProps<{ memberCount: number }>();
         </div>
 
         <div class="story__photo reveal">
-          <img src="/img/IMG_3047.jpg" alt="L'entrée du Bistrot de Tatina — containers et portes jaunes" loading="lazy" />
+          <img src="/img/IMG_3047.jpg" alt="L'entrée du Bistrot de Tatina, containers et portes jaunes" loading="lazy" />
         </div>
       </div>
 
@@ -64,7 +64,7 @@ defineProps<{ memberCount: number }>();
   </section>
 
   <div class="photo-strip">
-    <img src="/img/IMG_3050.jpg" alt="Le Bistrot de Tatina — ambiance et lieu" loading="lazy" />
+    <img src="/img/IMG_3050.jpg" alt="Le Bistrot de Tatina, ambiance et lieu" loading="lazy" />
     <div class="photo-strip__label">
       <span>Le Bistrot de Tatina · Annecy</span>
     </div>

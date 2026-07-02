@@ -17,7 +17,7 @@ const feedback = ref<{ text: string; ok: boolean } | null>({
   text: DEFAULT_NOTE,
   ok: false,
 });
-const cardNum = ref("— — —");
+const cardNum = ref("· · ·");
 const formEl = ref<HTMLFormElement | null>(null);
 
 function genCardNumber() {
@@ -55,7 +55,7 @@ async function onSubmit() {
       },
     });
     feedback.value = { text: json.message, ok: true };
-    show("Pré-adhésion enregistrée — rendez-vous à la porte jaune !");
+    show("Pré-adhésion enregistrée. Rendez-vous à la porte jaune !");
     setTimeout(() => {
       form.firstName = "";
       form.lastName = "";
@@ -96,7 +96,7 @@ async function onSubmit() {
             <div class="card-id__seal">15€</div>
           </div>
           <div class="card-id__foot">
-            <span>LE BISTROT DE TATINA — ANNECY</span>
+            <span>LE BISTROT DE TATINA · ANNECY</span>
             <span>VALABLE 1 AN</span>
           </div>
         </div>
@@ -110,7 +110,7 @@ async function onSubmit() {
         <h2 class="h-display">Une carte, une<br/><span class="hl">tribu de soudeurs.</span></h2>
         <p>
           Pour <strong>15€ par an</strong>, vous rejoignez l'asso, vous accédez aux soirées privées,
-          vous recevez les programmes et — surtout — vous soutenez nos causes.
+          vous recevez les programmes et, surtout, vous soutenez nos causes.
         </p>
 
         <form ref="formEl" class="form" novalidate @submit.prevent="onSubmit">

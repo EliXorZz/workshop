@@ -89,7 +89,7 @@ async function onSubmit() {
           <div class="field">
             <label for="bandStyle">Style</label>
             <select id="bandStyle" v-model="form.bandStyle" required>
-              <option value="">—</option>
+              <option value="">Choisir…</option>
               <option>Rock / Garage</option>
               <option>Folk / Songwriter</option>
               <option>Électro / DJ set</option>

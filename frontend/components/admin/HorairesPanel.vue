@@ -7,6 +7,9 @@ const settings = reactive<Record<string, string>>({
   contact_address: "",
   contact_phone: "",
   contact_email: "",
+  footer_copyright: "",
+  footer_baseline: "",
+  footer_bilan_url: "",
 });
 jours.forEach((j) => (settings[`hours_${j}`] = ""));
 
@@ -65,6 +68,26 @@ async function save() {
         <div class="field-row">
           <div class="field"><label>Téléphone</label><input v-model="settings.contact_phone" type="tel" /></div>
           <div class="field"><label>Email</label><input v-model="settings.contact_email" type="email" /></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Pied de page</h3>
+      <div class="form" style="background: transparent; border: 0; box-shadow: none; padding: 0;">
+        <div class="field">
+          <label>Mentions / copyright</label>
+          <input v-model="settings.footer_copyright" type="text" placeholder="© 2026 Asso Le Bistrot de Tatina · SIRET …" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Baseline (à droite)</label>
+            <input v-model="settings.footer_baseline" type="text" placeholder="Conçu sur un coin de touret, Annecy" />
+          </div>
+          <div class="field">
+            <label>Lien Bilan (PDF)</label>
+            <input v-model="settings.footer_bilan_url" type="url" placeholder="https://…" />
+          </div>
         </div>
       </div>
     </div>

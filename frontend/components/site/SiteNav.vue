@@ -20,14 +20,14 @@ function onLogoClick() {
     logoClicks.value = 0;
     partyMode.value = !partyMode.value;
     document.body.classList.toggle("party-mode", partyMode.value);
-    show("🎉 Mode soirée enclenché — chut !");
+    show("🎉 Mode soirée enclenché, chut !");
   }
 }
 </script>
 
 <template>
   <header class="nav" id="nav">
-    <a href="#top" class="nav__logo" aria-label="Accueil — Le Bistrot de Tatina">
+    <a href="#top" class="nav__logo" aria-label="Accueil, Le Bistrot de Tatina">
       <span class="logo-mark" aria-hidden="true" @click="onLogoClick">
         <span class="rivet"></span><span class="rivet"></span>
         <span class="rivet"></span><span class="rivet"></span>

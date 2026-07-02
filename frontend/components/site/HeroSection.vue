@@ -67,7 +67,7 @@ onBeforeUnmount(() => {
       </h1>
       <p class="hero__sub">
         Containers réaménagés, portes jaunes, mobilier unique et artisanal, ambiance chaudronnerie. <br/>
-        Concerts, DJ sets, food trucks — les bénéfices vont à la lutte contre le cancer.
+        Concerts, DJ sets, food trucks. Les bénéfices vont à la lutte contre le cancer.
       </p>
 
       <div class="hero__ctas">

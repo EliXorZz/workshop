@@ -23,7 +23,7 @@ const form = reactive({
 Vendredi 19, on accueille Anouk Béton & The Soldering Hearts pour une soirée folk-électro.
 
 Ouverture des portes jaunes à 19h, concert à 20h30.
-On compte sur vous — et sur vos copains.
+On compte sur vous, et sur vos copains.
 
 À très vite,
 L'équipe Tatina`,

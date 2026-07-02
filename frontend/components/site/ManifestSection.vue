@@ -11,7 +11,7 @@
         Pas un patron. <em>Une quinzaine de bénévoles</em>.<br/>
         Tu pousses la porte jaune, t'es chez toi.
       </p>
-      <div class="manifest__signature reveal">— l'équipe du Bistrot de Tatina</div>
+      <div class="manifest__signature reveal">l'équipe du Bistrot de Tatina</div>
     </div>
   </section>
 </template>
