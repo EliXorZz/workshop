@@ -14,7 +14,7 @@ resources:
 images:
   - name: bistrot_tatina_front_image
     newName: "harbor.server.dylanbattig.fr/private/bistrot_tatina_front" # {"$imagepolicy": "flux-system:bistrot-tatina-front:name"}
-    newTag: "main-latest" # {"$imagepolicy": "flux-system:bistrot-tatina-front:tag"}
+    newTag: "main-9090eacf3ce9676bbf355bcafea3c8e72ffc3aa9-1" # {"$imagepolicy": "flux-system:bistrot-tatina-front:tag"}
   - name: bistrot_tatina_api_image
     newName: "harbor.server.dylanbattig.fr/private/bistrot_tatina_api" # {"$imagepolicy": "flux-system:bistrot-tatina-api:name"}
     newTag: "main-9090eacf3ce9676bbf355bcafea3c8e72ffc3aa9-1" # {"$imagepolicy": "flux-system:bistrot-tatina-api:tag"}
