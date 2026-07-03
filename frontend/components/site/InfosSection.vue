@@ -10,6 +10,8 @@ interface Settings {
   contact_phone?: string;
   contact_email?: string;
   contact_address?: string;
+  social_instagram?: string;
+  social_facebook?: string;
 }
 
 const props = defineProps<{ settings: Settings }>();
@@ -60,6 +62,9 @@ const mapsUrl = computed(() => {
   const query = encodeURIComponent(address.value.replace(/\n/g, ", "));
   return `https://www.google.com/maps/search/?api=1&query=${query}`;
 });
+
+const instagram = computed(() => props.settings.social_instagram || "");
+const facebook = computed(() => props.settings.social_facebook || "");
 </script>
 
 <template>
@@ -118,8 +123,10 @@ const mapsUrl = computed(() => {
           <p>Pour la presse, les partenariats ou un coup de gueule constructif.</p>
           <a :href="`mailto:${email}`" class="link-underline">{{ email }} →</a>
           <div class="socials">
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="Facebook">FB</a>
+            <a v-if="instagram" :href="instagram" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a v-else aria-label="Instagram" style="opacity:.35;pointer-events:none;">IG</a>
+            <a v-if="facebook" :href="facebook" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+            <a v-else aria-label="Facebook" style="opacity:.35;pointer-events:none;">FB</a>
           </div>
         </div>
       </div>

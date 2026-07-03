@@ -17,7 +17,9 @@ const currentTab = useState<string>("admin_tab", () => "dashboard");
     <AdminHorairesPanel  v-else-if="currentTab === 'horaires'" />
     <AdminMembersPanel   v-else-if="currentTab === 'adherents'" />
     <AdminCampaignsPanel v-else-if="currentTab === 'campagnes'" />
+    <AdminContactsPanel  v-else-if="currentTab === 'contacts'" />
     <AdminAssosPanel     v-else-if="currentTab === 'assos'" />
+    <AdminBilansPanel    v-else-if="currentTab === 'bilans'" />
     <AdminSettingsPanel  v-else-if="currentTab === 'settings'" />
   </div>
 </template>

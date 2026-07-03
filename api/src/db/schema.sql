@@ -70,7 +70,10 @@ INSERT OR IGNORE INTO settings (key, value) VALUES
   ('toggle_transparency', 'true'),
   ('toggle_adhesion',     'true'),
   ('toggle_concerts',     'true'),
-  ('toggle_fermeture',    'false');
+  ('toggle_agenda',       'true'),
+  ('toggle_fermeture',    'false'),
+  ('social_instagram',    ''),
+  ('social_facebook',     '');
 
 CREATE TABLE IF NOT EXISTS associations (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -106,6 +109,16 @@ CREATE TABLE IF NOT EXISTS campaigns (
   sent_at           TEXT,
   created_at        TEXT DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS bilans (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  year       INTEGER NOT NULL,
+  title      TEXT NOT NULL,
+  file_url   TEXT NOT NULL,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_bilans_year ON bilans(year DESC);
 
 -- Triggers updated_at
 CREATE TRIGGER IF NOT EXISTS trg_members_updated_at

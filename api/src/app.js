@@ -15,6 +15,7 @@ const menuRoutes         = require("./routes/menu");
 const settingsRoutes     = require("./routes/settings");
 const associationsRoutes = require("./routes/associations");
 const campaignsRoutes    = require("./routes/campaigns");
+const bilansRoutes       = require("./routes/bilans");
 
 const app = express();
 
@@ -59,11 +60,14 @@ app.use("/api/menu",                        menuRoutes);
 app.use("/api/settings",                    settingsRoutes);
 app.use("/api/associations",                associationsRoutes);
 app.use("/api/campaigns",                   campaignsRoutes);
+app.use("/api/bilans",                      bilansRoutes);
 
 // ── Health check ────────────────────────────────────────────────
 app.get("/health", (req, res) => res.json({ status: "ok", ts: new Date().toISOString() }));
 
 // ── Fichiers statiques du front ──────────────────────────────────
+const DATA_DIR = path.join(__dirname, "../../data");
+app.use("/uploads", express.static(path.join(DATA_DIR, "uploads")));
 app.use(express.static(FRONT_DIR));
 
 app.get("/admin", (req, res) => res.sendFile(path.join(FRONT_DIR, "admin", "index.html")));

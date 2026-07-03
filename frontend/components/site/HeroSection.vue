@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ memberCount: number }>();
+withDefaults(defineProps<{ memberCount: number; showAgenda?: boolean }>(), { showAgenda: true });
 
 const doorLeft = ref<HTMLElement | null>(null);
 const doorRight = ref<HTMLElement | null>(null);
@@ -71,7 +71,7 @@ onBeforeUnmount(() => {
       </p>
 
       <div class="hero__ctas">
-        <a class="btn btn--yellow btn--lg" href="#agenda">
+        <a v-if="showAgenda" class="btn btn--yellow btn--lg" href="#agenda">
           Voir l'agenda
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="square"/></svg>
         </a>

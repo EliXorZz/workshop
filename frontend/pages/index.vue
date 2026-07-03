@@ -31,6 +31,7 @@ interface Settings {
   contact_email?: string;
   contact_address?: string;
 }
+interface Bilan { id: number; year: number; title: string; file_url: string; }
 
 useHead({
   title: "Bar associatif, containers & chaudronnerie · Annecy",
@@ -48,12 +49,14 @@ const [
   { data: associations },
   { data: stats },
   { data: settings },
+  { data: latestBilan },
 ] = await Promise.all([
   useFetch<Event[]>("/events", { baseURL: apiBase, key: "home-events", default: () => [] }),
   useFetch<Record<string, MenuItem[]>>("/menu", { baseURL: apiBase, key: "home-menu", default: () => ({}) }),
   useFetch<Association[]>("/associations", { baseURL: apiBase, key: "home-associations", default: () => [] }),
   useFetch<Stats>("/public/stats", { baseURL: apiBase, key: "home-stats", default: () => ({ members: 0 }) }),
   useFetch<Settings>("/settings", { baseURL: apiBase, key: "home-settings", default: () => ({}) }),
+  useFetch<Bilan | null>("/bilans/latest", { baseURL: apiBase, key: "home-bilan-latest", default: () => null }),
 ]);
 
 const upcomingEvents = computed(() => {
@@ -80,6 +83,7 @@ const toggles = computed(() => ({
   transparency: settingsData.value.toggle_transparency !== "false",
   adhesion: settingsData.value.toggle_adhesion !== "false",
   concerts: settingsData.value.toggle_concerts !== "false",
+  agenda: settingsData.value.toggle_agenda !== "false",
   fermeture: settingsData.value.toggle_fermeture === "true",
 }));
 
@@ -159,15 +163,16 @@ function animateCount(el: HTMLElement) {
 <template>
   <div>
     <SiteClosureBanner v-if="toggles.fermeture" />
-    <SiteHeroSection :member-count="memberCount" />
+    <SiteHeroSection :member-count="memberCount" :show-agenda="toggles.agenda" />
     <SiteManifestSection />
     <SiteStorySection
       :member-count="memberCount"
       :membership-price="membershipPrice"
       :show-transparence="toggles.transparency"
-      :bilan-url="settingsData.footer_bilan_url"
+      :latest-bilan="latestBilan"
+      :api-base="apiBase"
     />
-    <SiteAgendaSection :events="upcomingEvents" />
+    <SiteAgendaSection v-if="toggles.agenda" :events="upcomingEvents" />
     <SiteMenuSection :menu="menuData" />
     <SiteConcertSection v-if="toggles.concerts" />
     <SiteInfosSection :settings="settingsData" />

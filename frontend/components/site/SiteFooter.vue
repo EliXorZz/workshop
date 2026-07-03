@@ -44,7 +44,7 @@ const baseline = computed(
         <div>
           <h4>Asso</h4>
           <a href="#adhesion">Adhérer</a>
-          <a :href="bilanUrl" target="_blank" rel="noopener">Bilan 2025 (PDF)</a>
+          <NuxtLink to="/bilans">Bilans annuels</NuxtLink>
           <a href="#histoire">L'histoire</a>
         </div>
         <div>

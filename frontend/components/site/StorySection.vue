@@ -1,13 +1,26 @@
 <script setup lang="ts">
-withDefaults(
+interface Bilan {
+  id: number;
+  year: number;
+  title: string;
+  file_url: string;
+}
+
+const props = withDefaults(
   defineProps<{
     memberCount: number;
     membershipPrice?: number;
     showTransparence?: boolean;
-    bilanUrl?: string;
+    latestBilan?: Bilan | null;
+    apiBase?: string;
   }>(),
-  { membershipPrice: 15, showTransparence: true, bilanUrl: "" },
+  { membershipPrice: 15, showTransparence: true, latestBilan: null, apiBase: "" },
 );
+
+const bilanHref = computed(() => {
+  if (!props.latestBilan) return null;
+  return `${props.apiBase.replace("/api", "")}${props.latestBilan.file_url}`;
+});
 </script>
 
 <template>
@@ -65,7 +78,15 @@ withDefaults(
         </div>
         <div>
           <strong>Transparence totale.</strong> Chaque année, les comptes de l'association sont rendus publics.
-          <a :href="bilanUrl || '#'" :target="bilanUrl ? '_blank' : undefined" rel="noopener" class="link-underline">Télécharger le bilan 2025 →</a>
+          <template v-if="latestBilan && bilanHref">
+            <a :href="bilanHref" target="_blank" rel="noopener" class="link-underline">
+              Télécharger le {{ latestBilan.title }} →
+            </a>
+            <NuxtLink to="/bilans" class="link-underline" style="margin-left:1.5rem;">
+              Voir tous les bilans →
+            </NuxtLink>
+          </template>
+          <NuxtLink v-else to="/bilans" class="link-underline">Voir tous les bilans →</NuxtLink>
         </div>
       </div>
     </div>

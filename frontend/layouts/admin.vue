@@ -10,7 +10,9 @@ const tabs = [
   { key: "horaires", label: "Horaires & infos", icon: "⏱" },
   { key: "adherents", label: "Adhérents", icon: "▰" },
   { key: "campagnes", label: "Campagnes", icon: "✉" },
+  { key: "contacts", label: "Demandes", icon: "☎" },
   { key: "assos", label: "Assos soutenues", icon: "♡" },
+  { key: "bilans", label: "Bilans", icon: "📄" },
   { key: "settings", label: "Réglages", icon: "⚙" },
 ];
 

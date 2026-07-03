@@ -3,6 +3,22 @@ const menuOpen = ref(false);
 const partyMode = ref(false);
 const logoClicks = ref(0);
 const { show } = useToast();
+const apiBase = useApiBase();
+
+const { data: settings } = await useFetch<Record<string, string>>("/settings", {
+  baseURL: apiBase,
+  key: "settings-shared",
+  default: () => ({}),
+});
+
+const showConcert = computed(() => settings.value?.toggle_concerts !== "false");
+const showAdhesion = computed(() => settings.value?.toggle_adhesion !== "false");
+
+const route = useRoute();
+const isHome = computed(() => route.path === "/");
+function anchor(hash: string) {
+  return isHome.value ? hash : `/${hash}`;
+}
 
 function toggleMenu() {
   menuOpen.value = !menuOpen.value;
@@ -27,7 +43,7 @@ function onLogoClick() {
 
 <template>
   <header class="nav" id="nav">
-    <a href="#top" class="nav__logo" aria-label="Accueil, Le Bistrot de Tatina">
+    <a :href="anchor('#top')" class="nav__logo" aria-label="Accueil, Le Bistrot de Tatina">
       <span class="logo-mark" aria-hidden="true" @click="onLogoClick">
         <span class="rivet"></span><span class="rivet"></span>
         <span class="rivet"></span><span class="rivet"></span>
@@ -46,15 +62,15 @@ function onLogoClick() {
         padding: '20px', zIndex: '49', borderBottom: '3px solid var(--yellow)'
       } : undefined"
     >
-      <a href="#histoire" @click="closeMenuOnLink">Histoire</a>
-      <a href="#agenda" @click="closeMenuOnLink">Agenda</a>
-      <a href="#menu" @click="closeMenuOnLink">Menu</a>
-      <a href="#concert" @click="closeMenuOnLink">Concert</a>
-      <a href="#assos" @click="closeMenuOnLink">Nos dons</a>
-      <a href="#infos" @click="closeMenuOnLink">Infos</a>
+      <a :href="anchor('#histoire')" @click="closeMenuOnLink">Histoire</a>
+      <a :href="anchor('#agenda')" @click="closeMenuOnLink">Agenda</a>
+      <a :href="anchor('#menu')" @click="closeMenuOnLink">Menu</a>
+      <a v-if="showConcert" :href="anchor('#concert')" @click="closeMenuOnLink">Concert</a>
+      <a :href="anchor('#assos')" @click="closeMenuOnLink">Nos dons</a>
+      <a :href="anchor('#infos')" @click="closeMenuOnLink">Infos</a>
     </nav>
 
-    <a href="#adhesion" class="btn btn--yellow nav__cta">
+    <a v-if="showAdhesion" :href="anchor('#adhesion')" class="btn btn--yellow nav__cta">
       Adhérer
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="square"/></svg>
     </a>
