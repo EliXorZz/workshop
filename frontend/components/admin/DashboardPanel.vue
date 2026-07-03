@@ -3,6 +3,7 @@ interface DashboardData {
   members: { total: number; paid: number; new_month: number };
   events: { upcoming: number; concerts: number };
   pending_requests: number;
+  membership_price: number;
   upcoming_events: { id: number; title: string; event_date: string; status: string }[];
 }
 
@@ -47,7 +48,7 @@ function statusBadge(s: string) {
       <div class="kpi">
         <div class="kpi__label">Cotisations payées</div>
         <div class="kpi__value">{{ data?.members.paid ?? "—" }}</div>
-        <div class="kpi__delta">× 15€</div>
+        <div class="kpi__delta">× {{ data?.membership_price ?? 15 }}€</div>
       </div>
       <div class="kpi">
         <div class="kpi__label">Soirées à venir</div>

@@ -7,7 +7,7 @@ const router = express.Router();
 // GET /api/dashboard
 router.get("/", requireAuth, async (req, res) => {
   try {
-    const [membersStats, eventsCount, pendingRequests] = await Promise.all([
+    const [membersStats, eventsCount, pendingRequests, membershipSetting] = await Promise.all([
       db.query(`
         SELECT
           COUNT(*)                                                                  AS total,
@@ -22,11 +22,14 @@ router.get("/", requireAuth, async (req, res) => {
         FROM events
       `),
       db.query(`SELECT COUNT(*) AS count FROM contact_requests WHERE status = 'pending'`),
+      db.query(`SELECT value FROM settings WHERE key = 'membership_price'`),
     ]);
 
     const m = membersStats.rows[0];
     const e = eventsCount.rows[0];
     const r = pendingRequests.rows[0];
+    const rawPrice = membershipSetting.rows[0]?.value;
+    const membershipPrice = Number(rawPrice) > 0 ? Number(rawPrice) : 15;
 
     const upcomingEvents = await db.query(`
       SELECT id, title, type, event_date, status
@@ -46,8 +49,9 @@ router.get("/", requireAuth, async (req, res) => {
         upcoming: Number(e.upcoming) || 0,
         concerts: Number(e.concerts) || 0,
       },
-      pending_requests: Number(r.count) || 0,
-      upcoming_events:  upcomingEvents.rows,
+      pending_requests:  Number(r.count) || 0,
+      membership_price:  membershipPrice,
+      upcoming_events:   upcomingEvents.rows,
     });
   } catch (err) {
     console.error("GET /dashboard:", err.message);

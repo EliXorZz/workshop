@@ -151,9 +151,6 @@ function fmt(dt: string) {
                     <a :href="`mailto:${r.email}?subject=Re: demande concert - Bistrot de Tatina`" class="btn btn--yellow btn--sm">
                       Répondre par email →
                     </a>
-                    <a v-if="r.phone" :href="`tel:${r.phone}`" class="btn btn--ghost btn--sm">
-                      Appeler
-                    </a>
                   </div>
                 </div>
               </td>

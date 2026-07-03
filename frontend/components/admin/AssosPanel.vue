@@ -2,6 +2,7 @@
 interface Asso {
   id: number;
   name: string;
+  description?: string | null;
   amount_2026: number | string;
   website_url?: string | null;
 }
@@ -11,6 +12,7 @@ const { show } = useToast();
 
 const rows = ref<Asso[]>([]);
 const modalOpen = ref(false);
+const editingAsso = ref<Asso | null>(null);
 const confirmOpen = ref(false);
 const pendingDelete = ref<number | null>(null);
 
@@ -21,10 +23,21 @@ async function load() {
 }
 onMounted(load);
 
+function openAdd() {
+  editingAsso.value = null;
+  modalOpen.value = true;
+}
+
+function openEdit(a: Asso) {
+  editingAsso.value = a;
+  modalOpen.value = true;
+}
+
 function askDelete(id: number) {
   pendingDelete.value = id;
   confirmOpen.value = true;
 }
+
 async function doDelete() {
   if (pendingDelete.value == null) return;
   try {
@@ -46,7 +59,7 @@ async function doDelete() {
         <h2>Assos soutenues</h2>
         <p>Mets à jour les montants reversés et la liste des partenaires.</p>
       </div>
-      <button class="btn btn--yellow" @click="modalOpen = true">+ Ajouter une asso</button>
+      <button class="btn btn--yellow" @click="openAdd">+ Ajouter une asso</button>
     </header>
 
     <div class="table-wrap">
@@ -65,6 +78,7 @@ async function doDelete() {
             </td>
             <td>
               <div class="row-actions">
+                <button class="icon-btn" title="Modifier" @click="openEdit(a)">✎</button>
                 <button class="icon-btn icon-btn--danger" title="Supprimer" @click="askDelete(a.id)">✕</button>
               </div>
             </td>
@@ -73,7 +87,12 @@ async function doDelete() {
       </table>
     </div>
 
-    <AdminAssoModal :open="modalOpen" @close="modalOpen = false" @saved="load" />
+    <AdminAssoModal
+      :open="modalOpen"
+      :asso="editingAsso"
+      @close="modalOpen = false"
+      @saved="load"
+    />
     <AdminConfirmModal
       :open="confirmOpen"
       message="Supprimer cette asso ?"
