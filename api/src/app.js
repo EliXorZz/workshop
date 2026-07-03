@@ -20,6 +20,10 @@ const galleryRoutes      = require("./routes/gallery");
 
 const app = express();
 
+// Derrière un reverse proxy (Traefik / Ingress) : indispensable pour
+// express-rate-limit qui lit l'IP réelle via X-Forwarded-For.
+app.set("trust proxy", 1);
+
 // ── Sécurité ────────────────────────────────────────────────────
 app.use(helmet());
 
