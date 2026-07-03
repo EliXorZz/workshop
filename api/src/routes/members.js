@@ -36,7 +36,7 @@ router.get("/", requireAuth, async (req, res) => {
 
   const [rows, total] = await Promise.all([
     db.query(
-      `SELECT id, first_name, last_name, email, phone, payment_status, payment_date, consent, created_at
+      `SELECT id, first_name, last_name, email, phone, payment_status, payment_date, consent, contact_email, contact_sms, created_at
        FROM members ${clause} ORDER BY created_at DESC LIMIT ? OFFSET ?`,
       [...params, Number(limit), offset]
     ),
@@ -143,21 +143,23 @@ router.post("/import", requireAuth, upload.single("file"), async (req, res) => {
 
 // POST /api/members — créer un adhérent manuellement
 router.post("/", requireAuth, async (req, res) => {
-  const { first_name, last_name, email, phone, consent, payment_status } = req.body;
+  const { first_name, last_name, email, phone, consent, payment_status, contact_email, contact_sms } = req.body;
   if (!first_name || !last_name || !email) {
     return res.status(400).json({ error: "Prénom, nom et email sont obligatoires" });
   }
 
   try {
     const { rows } = await db.query(
-      `INSERT INTO members (first_name, last_name, email, phone, consent, payment_status, payment_date)
-       VALUES ($1,$2,$3,$4,$5,$6,$7)
+      `INSERT INTO members (first_name, last_name, email, phone, consent, payment_status, payment_date, contact_email, contact_sms)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
        RETURNING *`,
       [
         first_name.trim(), last_name.trim(),
         email.trim().toLowerCase(), phone?.trim() || null,
         !!consent, !!payment_status,
         payment_status ? new Date().toISOString() : null,
+        contact_email !== false ? 1 : 0,
+        !!contact_sms ? 1 : 0,
       ]
     );
 
@@ -178,13 +180,15 @@ router.get("/:id", requireAuth, async (req, res) => {
 
 // PATCH /api/members/:id — mise à jour générale
 router.patch("/:id", requireAuth, async (req, res) => {
-  const { first_name, last_name, email, phone, consent, notes } = req.body;
+  const { first_name, last_name, email, phone, consent, notes, contact_email, contact_sms } = req.body;
   const { rows } = await db.query(
     `UPDATE members
-     SET first_name=$1, last_name=$2, email=$3, phone=$4, consent=$5, notes=$6
-     WHERE id=$7
+     SET first_name=$1, last_name=$2, email=$3, phone=$4, consent=$5, notes=$6, contact_email=$7, contact_sms=$8
+     WHERE id=$9
      RETURNING *`,
-    [first_name, last_name, email?.toLowerCase(), phone || null, !!consent, notes || null, req.params.id]
+    [first_name, last_name, email?.toLowerCase(), phone || null, !!consent, notes || null,
+     contact_email !== false ? 1 : 0, !!contact_sms ? 1 : 0,
+     req.params.id]
   );
   if (!rows.length) return res.status(404).json({ error: "Adhérent introuvable" });
   res.json(rows[0]);

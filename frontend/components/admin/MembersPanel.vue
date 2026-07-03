@@ -7,6 +7,8 @@ interface Member {
   phone?: string | null;
   payment_status: boolean;
   consent: boolean;
+  contact_email: boolean | number;
+  contact_sms: boolean | number;
 }
 
 const { apiFetch, apiBase } = useApi();
@@ -154,7 +156,7 @@ async function onFile(e: Event) {
       <select v-model="status">
         <option value="">Tous les statuts</option>
         <option value="paid">Cotisation payée</option>
-        <option value="unpaid">Non payé</option>
+        <option value="unpaid">À renouveler</option>
       </select>
       <div class="spacer"></div>
       <span class="badge">{{ total }} adhérent{{ total > 1 ? "s" : "" }}</span>
@@ -163,15 +165,21 @@ async function onFile(e: Event) {
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>N°</th><th>Nom</th><th>Email</th><th>Téléphone</th><th>Paiement</th><th>Statut</th><th>Actions</th></tr>
+          <tr><th>N°</th><th>Nom</th><th>Email</th><th>Téléphone</th><th>Contact</th><th>Paiement</th><th>Statut</th><th>Actions</th></tr>
         </thead>
         <tbody>
-          <tr v-if="!members.length"><td colspan="7" style="opacity:.5">Aucun adhérent.</td></tr>
+          <tr v-if="!members.length"><td colspan="8" style="opacity:.5">Aucun adhérent.</td></tr>
           <tr v-for="m in members" :key="m.id">
             <td>{{ m.id }}</td>
             <td><strong>{{ m.last_name }} {{ m.first_name }}</strong></td>
             <td>{{ m.email }}</td>
             <td>{{ m.phone || "—" }}</td>
+            <td>
+              <div class="contact-chips">
+                <span :class="['chip', m.contact_email ? 'chip--on' : 'chip--off']" title="Email">✉</span>
+                <span :class="['chip', m.contact_sms ? 'chip--on' : 'chip--off']" title="SMS">✆</span>
+              </div>
+            </td>
             <td>
               <button
                 class="toggle-payment"
@@ -213,3 +221,19 @@ async function onFile(e: Event) {
     />
   </section>
 </template>
+
+<style scoped>
+.contact-chips { display: flex; gap: 4px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  font-size: .75rem;
+  border: 1px solid;
+}
+.chip--on  { border-color: var(--clr-yellow, #f5c842); color: var(--clr-yellow, #f5c842); }
+.chip--off { border-color: rgba(255,255,255,.15); color: rgba(255,255,255,.25); }
+</style>

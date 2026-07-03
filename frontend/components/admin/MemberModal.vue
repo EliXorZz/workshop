@@ -7,32 +7,39 @@ interface Member {
   phone?: string;
   consent?: boolean;
   payment_status?: boolean;
+  contact_email?: boolean | number;
+  contact_sms?: boolean | number;
 }
 
-const props = defineProps<{
-  open: boolean;
-  member: Member | null;
-}>();
-const emit = defineEmits<{
-  (e: "close"): void;
-  (e: "saved"): void;
-}>();
+const props = defineProps<{ open: boolean; member: Member | null }>();
+const emit = defineEmits<{ (e: "close"): void; (e: "saved"): void }>();
 
 const { apiFetch } = useApi();
 const { show } = useToast();
 
-const form = reactive<Member>({});
+const form = reactive({
+  first_name:     "",
+  last_name:      "",
+  email:          "",
+  phone:          "",
+  consent:        false,
+  payment_status: false,
+  contact_email:  true,
+  contact_sms:    false,
+});
 
 watch(
   () => props.member,
   (m) => {
     Object.assign(form, {
-      first_name: m?.first_name || "",
-      last_name: m?.last_name || "",
-      email: m?.email || "",
-      phone: m?.phone || "",
-      consent: !!m?.consent,
+      first_name:     m?.first_name     || "",
+      last_name:      m?.last_name      || "",
+      email:          m?.email          || "",
+      phone:          m?.phone          || "",
+      consent:        !!m?.consent,
       payment_status: !!m?.payment_status,
+      contact_email:  m?.contact_email !== undefined ? !!m.contact_email : true,
+      contact_sms:    !!m?.contact_sms,
     });
   },
   { immediate: true },
@@ -40,11 +47,13 @@ watch(
 
 async function onSubmit() {
   const body = {
-    first_name: (form.first_name || "").trim(),
-    last_name: (form.last_name || "").trim(),
-    email: (form.email || "").trim(),
-    phone: (form.phone || "").trim() || null,
-    consent: !!form.consent,
+    first_name:    (form.first_name || "").trim(),
+    last_name:     (form.last_name  || "").trim(),
+    email:         (form.email      || "").trim(),
+    phone:         (form.phone      || "").trim() || null,
+    consent:       form.consent,
+    contact_email: form.contact_email,
+    contact_sms:   form.contact_sms,
   };
   try {
     if (props.member?.id) {
@@ -56,7 +65,7 @@ async function onSubmit() {
     } else {
       await apiFetch("/members", {
         method: "POST",
-        body: { ...body, payment_status: !!form.payment_status },
+        body: { ...body, payment_status: form.payment_status },
       });
       show("Adhérent créé.");
     }
@@ -84,10 +93,20 @@ async function onSubmit() {
         </div>
         <div class="field"><label>Email *</label><input v-model="form.email" type="email" required autocomplete="off" /></div>
         <div class="field"><label>Téléphone</label><input v-model="form.phone" type="tel" autocomplete="off" /></div>
+
         <div class="checkbox-row">
           <label class="checkbox-label"><input v-model="form.payment_status" type="checkbox" /><span>Cotisation payée</span></label>
           <label class="checkbox-label"><input v-model="form.consent" type="checkbox" /><span>Consentement RGPD</span></label>
         </div>
+
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);">
+          <p style="font-size:.75rem;opacity:.5;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em;">Moyens de contact</p>
+          <div class="checkbox-row">
+            <label class="checkbox-label"><input v-model="form.contact_email" type="checkbox" /><span>Email</span></label>
+            <label class="checkbox-label"><input v-model="form.contact_sms" type="checkbox" /><span>SMS</span></label>
+          </div>
+        </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn--ghost" @click="emit('close')">Annuler</button>
           <button type="submit" class="btn btn--yellow">{{ member ? "Enregistrer" : "Créer" }}</button>

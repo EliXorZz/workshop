@@ -8,16 +8,16 @@ const router = express.Router();
 // Récupère les destinataires selon la cible
 async function resolveRecipients(target) {
   let where = "";
-  if (target === "active")  where = "WHERE payment_status = true";
-  if (target === "torenew") where = "WHERE payment_status = false";
+  if (target === "active")  where = "WHERE payment_status = 1";
+  if (target === "torenew") where = "WHERE payment_status = 0";
 
   const { rows } = await db.query(
-    `SELECT email, phone, consent FROM members ${where}`
+    `SELECT email, phone, consent, contact_email, contact_sms FROM members ${where}`
   );
 
-  // Seuls les membres ayant donné leur consentement reçoivent les communications
-  const emails = rows.filter((m) => m.consent).map((m) => m.email);
-  const phones = rows.filter((m) => m.consent && m.phone).map((m) => m.phone);
+  // Respect du consentement RGPD ET des préférences de contact individuelles
+  const emails = rows.filter((m) => m.consent && m.contact_email).map((m) => m.email);
+  const phones = rows.filter((m) => m.consent && m.contact_sms && m.phone).map((m) => m.phone);
 
   return { emails, phones, total: rows.length, consented: emails.length };
 }
@@ -26,9 +26,9 @@ async function resolveRecipients(target) {
 // (uniquement ceux qui ont donné leur consentement RGPD, comme à l'envoi)
 router.get("/recipient-counts", requireAuth, async (req, res) => {
   const [all, active, torenew] = await Promise.all([
-    db.query("SELECT COUNT(*) AS c FROM members WHERE consent = 1"),
-    db.query("SELECT COUNT(*) AS c FROM members WHERE consent = 1 AND payment_status = 1"),
-    db.query("SELECT COUNT(*) AS c FROM members WHERE consent = 1 AND payment_status = 0"),
+    db.query("SELECT COUNT(*) AS c FROM members WHERE consent = 1 AND contact_email = 1"),
+    db.query("SELECT COUNT(*) AS c FROM members WHERE consent = 1 AND contact_email = 1 AND payment_status = 1"),
+    db.query("SELECT COUNT(*) AS c FROM members WHERE consent = 1 AND contact_email = 1 AND payment_status = 0"),
   ]);
   res.json({
     all:     Number(all.rows[0].c)     || 0,
