@@ -22,6 +22,21 @@ async function resolveRecipients(target) {
   return { emails, phones, total: rows.length, consented: emails.length };
 }
 
+// GET /api/campaigns/recipient-counts — nombre de destinataires par cible
+// (uniquement ceux qui ont donné leur consentement RGPD, comme à l'envoi)
+router.get("/recipient-counts", requireAuth, async (req, res) => {
+  const [all, active, torenew] = await Promise.all([
+    db.query("SELECT COUNT(*) AS c FROM members WHERE consent = 1"),
+    db.query("SELECT COUNT(*) AS c FROM members WHERE consent = 1 AND payment_status = 1"),
+    db.query("SELECT COUNT(*) AS c FROM members WHERE consent = 1 AND payment_status = 0"),
+  ]);
+  res.json({
+    all:     Number(all.rows[0].c)     || 0,
+    active:  Number(active.rows[0].c)  || 0,
+    torenew: Number(torenew.rows[0].c) || 0,
+  });
+});
+
 // GET /api/campaigns — historique
 router.get("/", requireAuth, async (req, res) => {
   const { rows } = await db.query(

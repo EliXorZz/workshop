@@ -4,16 +4,18 @@ function isConfigured() {
   return !!process.env.BREVO_API_KEY && process.env.BREVO_API_KEY.length > 20;
 }
 
+// À partir de @getbrevo/brevo v2.3+, `ApiClient` a été retiré.
+// On passe la clé directement sur l'instance via `setApiKey`.
 function getEmailApi() {
-  const client = Brevo.ApiClient.instance;
-  client.authentications["api-key"].apiKey = process.env.BREVO_API_KEY;
-  return new Brevo.TransactionalEmailsApi();
+  const api = new Brevo.TransactionalEmailsApi();
+  api.setApiKey(Brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY);
+  return api;
 }
 
 function getSmsApi() {
-  const client = Brevo.ApiClient.instance;
-  client.authentications["api-key"].apiKey = process.env.BREVO_API_KEY;
-  return new Brevo.TransactionalSMSApi();
+  const api = new Brevo.TransactionalSMSApi();
+  api.setApiKey(Brevo.TransactionalSMSApiApiKeys.apiKey, process.env.BREVO_API_KEY);
+  return api;
 }
 
 // Envoie un email à une liste de destinataires (BCC par batch de 99)
