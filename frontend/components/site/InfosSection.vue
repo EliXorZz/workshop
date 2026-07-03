@@ -60,7 +60,7 @@ const addressLines = computed(() => address.value.split("\n"));
 
 const mapsUrl = computed(() => {
   const query = encodeURIComponent(address.value.replace(/\n/g, ", "));
-  return `https://www.google.com/maps/search/?api=1&query=${query}`;
+  return `https://maps.google.com/maps?q=${query}`;
 });
 
 const instagram = computed(() => props.settings.social_instagram || "");
