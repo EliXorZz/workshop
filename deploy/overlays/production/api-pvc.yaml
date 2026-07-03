@@ -4,6 +4,7 @@ metadata:
   name: bistrot-tatina-api-data
   namespace: bistrot-tatina
 spec:
+  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:
