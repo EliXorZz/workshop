@@ -1,7 +1,10 @@
 <script setup lang="ts">
 definePageMeta({ layout: false });
 
-useHead({ title: "Espace gestion" });
+useHead({
+  title: "Espace gestion",
+  bodyAttrs: { class: "admin-login" },
+});
 
 const { apiFetch } = useApi();
 const { login } = useAuth();
@@ -37,7 +40,7 @@ async function onSubmit() {
 </script>
 
 <template>
-  <div class="admin-login">
+  <div>
     <div class="hazard-bar" aria-hidden="true"></div>
 
     <div class="login-shell">
@@ -48,10 +51,10 @@ async function onSubmit() {
           <div class="logo-mark logo-mark--lg" aria-hidden="true">
             <span class="rivet"></span><span class="rivet"></span>
             <span class="rivet"></span><span class="rivet"></span>
-            TT
+            BT
           </div>
           <h1>Espace<br/>gestion</h1>
-          <p>Réservé à l'équipe Tatina. Login unique, partage de l'asso.</p>
+          <p>Réservé à l'équipe du Bistrot de Tatina. Login unique, partagé par l'asso.</p>
         </div>
 
         <form class="form" novalidate @submit.prevent="onSubmit">

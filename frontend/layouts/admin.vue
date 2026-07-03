@@ -1,4 +1,6 @@
 <script setup lang="ts">
+useHead({ bodyAttrs: { class: "admin" } });
+
 const { username, loadFromStorage, logout } = useAuth();
 
 const tabs = [
@@ -42,7 +44,7 @@ onMounted(() => {
           <div class="logo-mark" aria-hidden="true">
             <span class="rivet"></span><span class="rivet"></span>
             <span class="rivet"></span><span class="rivet"></span>
-            TT
+            BT
           </div>
           <div>
             <strong>Tatina<br/>Admin</strong>

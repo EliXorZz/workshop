@@ -1,0 +1,59 @@
+services:
+  api:
+    build:
+      context: ./api
+    container_name: tatina-api
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      NODE_ENV: production
+      # URL du front acceptée en CORS
+      FRONTEND_URL: http://localhost:3000
+      # Auth admin (à surcharger via .env)
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-tatina}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-jaune2022}
+      JWT_SECRET: ${JWT_SECRET:-change_me_in_prod}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-8h}
+      # Brevo (optionnel)
+      BREVO_API_KEY: ${BREVO_API_KEY:-}
+      BREVO_SENDER_EMAIL: ${BREVO_SENDER_EMAIL:-bonjour@bistrot-tatina.fr}
+      BREVO_SENDER_NAME: ${BREVO_SENDER_NAME:-Le Bistrot de Tatina}
+    volumes:
+      # Persistance de la base SQLite entre redémarrages
+      - ./api/data:/app/data
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "require('http').get('http://localhost:3001/health', r => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - tatina
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: tatina-frontend
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    environment:
+      # Côté serveur (SSR) : le front joint l'API via le réseau interne Docker
+      NUXT_API_BASE_INTERNAL: http://api:3001/api
+      # Côté client (navigateur) : passe par le port exposé sur l'hôte
+      NUXT_PUBLIC_API_BASE: ${NUXT_PUBLIC_API_BASE:-http://localhost:3001/api}
+    networks:
+      - tatina
+
+networks:
+  tatina:
+    driver: bridge

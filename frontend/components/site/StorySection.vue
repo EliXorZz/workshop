@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps<{ memberCount: number }>();
+withDefaults(defineProps<{ memberCount: number; showTransparence?: boolean }>(), {
+  showTransparence: true,
+});
 </script>
 
 <template>
@@ -42,8 +44,8 @@ defineProps<{ memberCount: number }>();
           <span class="stat__label">bénévoles</span>
         </div>
         <div class="stat reveal">
-          <span class="stat__value"><span class="counter" data-to="4">4</span></span>
-          <span class="stat__label">conteneurs aménagés</span>
+          <span class="stat__value"><span class="counter" data-to="15">15</span><i>€</i></span>
+          <span class="stat__label">montant de l'adhésion</span>
         </div>
         <div class="stat reveal">
           <span class="stat__value"><span class="counter" :data-to="memberCount">{{ memberCount }}</span></span>
@@ -51,7 +53,7 @@ defineProps<{ memberCount: number }>();
         </div>
       </div>
 
-      <div class="transparence reveal">
+      <div v-if="showTransparence" class="transparence reveal">
         <div class="transparence__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6l9-4z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
         </div>

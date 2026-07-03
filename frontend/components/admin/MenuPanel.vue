@@ -6,6 +6,8 @@ const { show } = useToast();
 
 const menu = ref<Record<string, MenuItem[]>>({});
 const modalOpen = ref(false);
+const editing = ref<MenuItem | null>(null);
+const presetCategory = ref<string>("");
 const confirmOpen = ref(false);
 const pendingDelete = ref<number | null>(null);
 
@@ -17,6 +19,22 @@ async function load() {
   } catch {}
 }
 onMounted(load);
+
+function openNew() {
+  editing.value = null;
+  presetCategory.value = "";
+  modalOpen.value = true;
+}
+function openNewInCategory(cat: string) {
+  editing.value = null;
+  presetCategory.value = cat;
+  modalOpen.value = true;
+}
+function openEdit(item: MenuItem) {
+  editing.value = { ...item };
+  presetCategory.value = "";
+  modalOpen.value = true;
+}
 
 function askDelete(id: number) {
   pendingDelete.value = id;
@@ -43,7 +61,7 @@ async function doDelete() {
         <h2>Menu (ardoise)</h2>
         <p>Modifie la carte affichée sur le site. La modif est visible immédiatement.</p>
       </div>
-      <button class="btn btn--yellow" @click="modalOpen = true">+ Ajouter un plat</button>
+      <button class="btn btn--yellow" @click="openNew">+ Ajouter un plat</button>
     </header>
 
     <div v-if="!categories.length" class="panel">
@@ -51,7 +69,12 @@ async function doDelete() {
     </div>
 
     <div v-for="[cat, items] in categories" :key="cat" class="panel">
-      <h3>{{ cat }}</h3>
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px;">
+        <h3 style="margin:0; padding:0; border:0;">{{ cat }}</h3>
+        <button class="btn btn--ghost btn--mini" @click="openNewInCategory(cat)">
+          + Ajouter dans {{ cat }}
+        </button>
+      </div>
       <table>
         <thead>
           <tr><th>Intitulé</th><th>Prix</th><th>Actions</th></tr>
@@ -62,6 +85,7 @@ async function doDelete() {
             <td>{{ item.price }}</td>
             <td>
               <div class="row-actions">
+                <button class="icon-btn" title="Éditer" @click="openEdit(item)">✎</button>
                 <button class="icon-btn icon-btn--danger" title="Supprimer" @click="askDelete(item.id)">✕</button>
               </div>
             </td>
@@ -70,7 +94,13 @@ async function doDelete() {
       </table>
     </div>
 
-    <AdminMenuModal :open="modalOpen" @close="modalOpen = false" @saved="load" />
+    <AdminMenuModal
+      :open="modalOpen"
+      :item="editing"
+      :preset-category="presetCategory"
+      @close="modalOpen = false"
+      @saved="load"
+    />
     <AdminConfirmModal
       :open="confirmOpen"
       message="Supprimer ce plat ?"

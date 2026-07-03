@@ -136,7 +136,6 @@ function visibleFilter(key: string) {
                 <span>{{ ev.timeText }}</span>
               </div>
             </div>
-            <a href="#" class="event__cta" aria-label="Plus d'infos">→</a>
           </article>
         </template>
       </div>

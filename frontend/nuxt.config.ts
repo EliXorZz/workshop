@@ -28,16 +28,20 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    // URL de l'API utilisée uniquement côté serveur (SSR).
+    // En Docker, elle pointe vers le service `api` du réseau interne.
+    apiBaseInternal: process.env.NUXT_API_BASE_INTERNAL || "",
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://localhost:3001/api",
     },
   },
 
   routeRules: {
-    // Vitrine SSR (défaut)
+    // Vitrine + login admin en SSR
     "/": { ssr: true },
-    // Admin uniquement côté client (dépend de sessionStorage)
-    "/admin": { ssr: false },
-    "/admin/**": { ssr: false },
+    "/admin": { ssr: true },
+    // Dashboard : SPA uniquement (dépend de sessionStorage)
+    "/admin/dashboard": { ssr: false },
+    "/admin/dashboard/**": { ssr: false },
   },
 });

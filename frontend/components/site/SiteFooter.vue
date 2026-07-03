@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const config = useRuntimeConfig();
+const apiBase = useApiBase();
 const { data: settings } = await useFetch<Record<string, string>>("/settings", {
-  baseURL: config.public.apiBase,
+  baseURL: apiBase,
   default: () => ({}),
   key: "settings-shared",
 });

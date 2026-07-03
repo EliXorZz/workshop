@@ -25,6 +25,7 @@ app.use(cors({
   origin: [
     process.env.FRONTEND_URL || "http://localhost:8080",
     "http://localhost:3000",
+    "http://localhost:4000",   // Nuxt dev (script `dev`)
     "http://127.0.0.1:5500",   // Live Server VS Code
     "null",                     // fichiers ouverts localement
   ],

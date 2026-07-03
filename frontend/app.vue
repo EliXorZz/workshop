@@ -6,7 +6,9 @@ useHead({
 
 <template>
   <div>
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
     <AppToast />
   </div>
 </template>

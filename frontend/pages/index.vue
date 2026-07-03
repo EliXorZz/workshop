@@ -39,8 +39,7 @@ useHead({
   ],
 });
 
-const config = useRuntimeConfig();
-const apiBase = config.public.apiBase;
+const apiBase = useApiBase();
 
 // SSR fetch en parallèle
 const [
@@ -71,7 +70,18 @@ const upcomingEvents = computed(() => {
 const memberCount = computed(() => stats.value?.members || 0);
 const menuData = computed(() => menu.value || {});
 const assosList = computed(() => associations.value || []);
-const settingsData = computed(() => settings.value || {});
+const settingsData = computed<Settings & Record<string, string | undefined>>(
+  () => settings.value || {},
+);
+
+// Toggles Visibilité (gérés depuis l'admin → onglet Réglages)
+// Défauts : tout visible, sauf fermeture qui est off par défaut.
+const toggles = computed(() => ({
+  transparency: settingsData.value.toggle_transparency !== "false",
+  adhesion: settingsData.value.toggle_adhesion !== "false",
+  concerts: settingsData.value.toggle_concerts !== "false",
+  fermeture: settingsData.value.toggle_fermeture === "true",
+}));
 
 // Scroll reveal (client)
 onMounted(() => {
@@ -140,15 +150,19 @@ function animateCount(el: HTMLElement) {
 </script>
 
 <template>
-  <NuxtLayout name="default">
+  <div>
+    <SiteClosureBanner v-if="toggles.fermeture" />
     <SiteHeroSection :member-count="memberCount" />
     <SiteManifestSection />
-    <SiteStorySection :member-count="memberCount" />
+    <SiteStorySection
+      :member-count="memberCount"
+      :show-transparence="toggles.transparency"
+    />
     <SiteAgendaSection :events="upcomingEvents" />
     <SiteMenuSection :menu="menuData" />
-    <SiteConcertSection />
+    <SiteConcertSection v-if="toggles.concerts" />
     <SiteInfosSection :settings="settingsData" />
     <SiteAssosSection :associations="assosList" />
-    <SiteAdhesionSection />
-  </NuxtLayout>
+    <SiteAdhesionSection v-if="toggles.adhesion" />
+  </div>
 </template>
