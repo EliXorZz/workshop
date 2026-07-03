@@ -32,6 +32,7 @@ interface Settings {
   contact_address?: string;
 }
 interface Bilan { id: number; year: number; title: string; file_url: string; }
+interface GalleryImage { id: number; file_url: string; }
 
 useHead({
   title: "Bar associatif, containers & chaudronnerie · Annecy",
@@ -50,6 +51,7 @@ const [
   { data: stats },
   { data: settings },
   { data: latestBilan },
+  { data: galleryImages },
 ] = await Promise.all([
   useFetch<Event[]>("/events", { baseURL: apiBase, key: "home-events", default: () => [] }),
   useFetch<Record<string, MenuItem[]>>("/menu", { baseURL: apiBase, key: "home-menu", default: () => ({}) }),
@@ -57,6 +59,7 @@ const [
   useFetch<Stats>("/public/stats", { baseURL: apiBase, key: "home-stats", default: () => ({ members: 0 }) }),
   useFetch<Settings>("/settings", { baseURL: apiBase, key: "home-settings", default: () => ({}) }),
   useFetch<Bilan | null>("/bilans/latest", { baseURL: apiBase, key: "home-bilan-latest", default: () => null }),
+  useFetch<GalleryImage[]>("/gallery", { baseURL: apiBase, key: "home-gallery", default: () => [] }),
 ]);
 
 const upcomingEvents = computed(() => {
@@ -84,6 +87,7 @@ const toggles = computed(() => ({
   adhesion: settingsData.value.toggle_adhesion !== "false",
   concerts: settingsData.value.toggle_concerts !== "false",
   agenda: settingsData.value.toggle_agenda !== "false",
+  gallery: settingsData.value.toggle_gallery !== "false",
   fermeture: settingsData.value.toggle_fermeture === "true",
 }));
 
@@ -173,6 +177,7 @@ function animateCount(el: HTMLElement) {
       :api-base="apiBase"
     />
     <SiteAgendaSection v-if="toggles.agenda" :events="upcomingEvents" />
+    <SiteGallerySection v-if="toggles.gallery && galleryImages?.length" :images="galleryImages" :api-base="apiBase" />
     <SiteMenuSection :menu="menuData" />
     <SiteConcertSection v-if="toggles.concerts" />
     <SiteInfosSection :settings="settingsData" />

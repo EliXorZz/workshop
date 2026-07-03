@@ -20,6 +20,7 @@ const currentTab = useState<string>("admin_tab", () => "dashboard");
     <AdminContactsPanel  v-else-if="currentTab === 'contacts'" />
     <AdminAssosPanel     v-else-if="currentTab === 'assos'" />
     <AdminBilansPanel    v-else-if="currentTab === 'bilans'" />
+    <AdminGalleryPanel   v-else-if="currentTab === 'gallery'" />
     <AdminSettingsPanel  v-else-if="currentTab === 'settings'" />
   </div>
 </template>

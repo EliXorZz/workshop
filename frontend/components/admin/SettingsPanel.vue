@@ -8,6 +8,7 @@ const toggles = reactive<Record<string, boolean>>({
   adhesion: false,
   concerts: false,
   agenda: false,
+  gallery: false,
   fermeture: false,
 });
 
@@ -57,6 +58,7 @@ async function save() {
         <label><span>Afficher la section agenda</span><input v-model="toggles.agenda" type="checkbox" /></label>
         <label><span>Activer le formulaire de pré-adhésion</span><input v-model="toggles.adhesion" type="checkbox" /></label>
         <label><span>Activer la programmation publique de concert</span><input v-model="toggles.concerts" type="checkbox" /></label>
+        <label><span>Afficher la galerie photo</span><input v-model="toggles.gallery" type="checkbox" /></label>
         <label><span>Mode "fermeture estivale exceptionnelle"</span><input v-model="toggles.fermeture" type="checkbox" /></label>
       </div>
       <button type="button" class="btn btn--yellow" style="margin-top:16px;" @click="save">Enregistrer</button>

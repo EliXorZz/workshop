@@ -13,6 +13,7 @@ const tabs = [
   { key: "contacts", label: "Demandes", icon: "☎" },
   { key: "assos", label: "Assos soutenues", icon: "♡" },
   { key: "bilans", label: "Bilans", icon: "📄" },
+  { key: "gallery", label: "Galerie", icon: "🖼" },
   { key: "settings", label: "Réglages", icon: "⚙" },
 ];
 

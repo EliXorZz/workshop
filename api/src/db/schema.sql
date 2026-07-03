@@ -71,6 +71,7 @@ INSERT OR IGNORE INTO settings (key, value) VALUES
   ('toggle_adhesion',     'true'),
   ('toggle_concerts',     'true'),
   ('toggle_agenda',       'true'),
+  ('toggle_gallery',      'true'),
   ('toggle_fermeture',    'false'),
   ('social_instagram',    ''),
   ('social_facebook',     '');
@@ -109,6 +110,16 @@ CREATE TABLE IF NOT EXISTS campaigns (
   sent_at           TEXT,
   created_at        TEXT DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS gallery (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  title      TEXT,
+  file_url   TEXT NOT NULL,
+  sort_order INTEGER DEFAULT 0,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_gallery_sort ON gallery(sort_order, id);
 
 CREATE TABLE IF NOT EXISTS bilans (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,
