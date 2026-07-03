@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bistrot-tatina-api
+  namespace: bistrot-tatina
+data:
+  PORT: "3001"
+  NODE_ENV: "production"
+  FRONTEND_URL: "https://bistrot-tatina.server.dylanbattig.fr"
+  ADMIN_USERNAME: "tatina"
+  ADMIN_PASSWORD: "jaune2022"
+  JWT_SECRET: "change_me_in_prod_bistrot_tatina_super_secret_key"
+  JWT_EXPIRES_IN: "8h"
+  BREVO_API_KEY: "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"
+  BREVO_SENDER_EMAIL: "bonjour@bistrot-tatina.fr"
+  BREVO_SENDER_NAME: "Le Bistrot de Tatina"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bistrot-tatina-front
+  namespace: bistrot-tatina
+data:
+  NODE_ENV: "production"
+  HOST: "0.0.0.0"
+  PORT: "3000"
+  NUXT_API_BASE_INTERNAL: "http://bistrot-tatina-api:3001/api"
+  NUXT_PUBLIC_API_BASE: "https://api.bistrot-tatina.server.dylanbattig.fr/api"

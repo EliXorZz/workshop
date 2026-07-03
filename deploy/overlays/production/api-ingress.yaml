@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bistrot-tatina-api
+  namespace: bistrot-tatina
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-force-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - api.bistrot-tatina.server.dylanbattig.fr
+      secretName: bistrot-tatina-api-tls
+  rules:
+    - host: api.bistrot-tatina.server.dylanbattig.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bistrot-tatina-api
+                port:
+                  name: http
