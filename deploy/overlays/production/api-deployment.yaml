@@ -17,6 +17,8 @@ spec:
       labels:
         app: bistrot-tatina-api
     spec:
+      imagePullSecrets:
+        - name: registry-secret
       containers:
         - name: api
           image: bistrot_tatina_api_image
