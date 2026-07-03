@@ -115,7 +115,7 @@ async function doDelete() {
             <td><strong>{{ b.year }}</strong></td>
             <td>{{ b.title }}</td>
             <td>
-              <a :href="`${apiBase.replace('/api', '')}${b.file_url}`" target="_blank" rel="noopener">
+              <a :href="`${apiBase.replace(/\/api\/?$/, '')}${b.file_url}`" target="_blank" rel="noopener">
                 Voir le PDF →
               </a>
             </td>

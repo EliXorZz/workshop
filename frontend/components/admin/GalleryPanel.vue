@@ -6,7 +6,7 @@ interface GalleryImage {
 
 const { show } = useToast();
 const apiBase = useApiBase();
-const fileBase = computed(() => apiBase.replace("/api", ""));
+const fileBase = computed(() => apiBase.replace(/\/api\/?$/, ""));
 
 const images = ref<GalleryImage[]>([]);
 const uploading = ref(false);

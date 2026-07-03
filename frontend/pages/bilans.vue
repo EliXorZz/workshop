@@ -21,7 +21,7 @@ const { data: bilans } = await useFetch<Bilan[]>("/bilans", {
   default: () => [],
 });
 
-const fileBase = computed(() => apiBase.replace("/api", ""));
+const fileBase = computed(() => apiBase.replace(/\/api\/?$/, ""));
 </script>
 
 <template>

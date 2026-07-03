@@ -19,7 +19,7 @@ const props = withDefaults(
 
 const bilanHref = computed(() => {
   if (!props.latestBilan) return null;
-  return `${props.apiBase.replace("/api", "")}${props.latestBilan.file_url}`;
+  return `${props.apiBase.replace(/\/api\/?$/, "")}${props.latestBilan.file_url}`;
 });
 </script>
 

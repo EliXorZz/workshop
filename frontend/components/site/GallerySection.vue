@@ -6,7 +6,7 @@ interface GalleryImage {
 
 const props = defineProps<{ images: GalleryImage[]; apiBase: string }>();
 
-const fileBase = computed(() => props.apiBase.replace("/api", ""));
+const fileBase = computed(() => props.apiBase.replace(/\/api\/?$/, ""));
 
 const track = ref<HTMLElement | null>(null);
 const current = ref(0);
