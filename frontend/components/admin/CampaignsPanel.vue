@@ -14,6 +14,11 @@ const { apiFetch } = useApi();
 const { show } = useToast();
 
 const campaigns = ref<Campaign[]>([]);
+const counts = ref<{ all: number; active: number; torenew: number }>({
+  all: 0,
+  active: 0,
+  torenew: 0,
+});
 const form = reactive({
   channel: "email",
   target: "all",
@@ -34,8 +39,19 @@ async function load() {
   try {
     campaigns.value = await apiFetch<Campaign[]>("/campaigns");
   } catch {}
+  try {
+    counts.value = await apiFetch<typeof counts.value>("/campaigns/recipient-counts");
+  } catch {}
 }
 onMounted(load);
+
+const recipientCount = computed(() => {
+  const t = form.target as keyof typeof counts.value;
+  return counts.value[t] ?? 0;
+});
+const recipientLabel = computed(
+  () => `${recipientCount.value} destinataire${recipientCount.value > 1 ? "s" : ""}`,
+);
 
 async function onSend() {
   sending.value = true;
@@ -109,7 +125,7 @@ function badgeClass(s: string) {
       </div>
 
       <div class="preview">
-        <div class="from">De : Tatina &lt;bonjour@bistrot-tatina.fr&gt;<br/>Pour : 120 destinataires</div>
+        <div class="from">De : Tatina &lt;bonjour@bistrot-tatina.fr&gt;<br/>Pour : {{ recipientLabel }}</div>
         <h4>{{ form.subject }}</h4>
         <div class="body">{{ form.body }}</div>
       </div>

@@ -1,4 +1,9 @@
 <script setup lang="ts">
+const props = withDefaults(
+  defineProps<{ membershipPrice?: number }>(),
+  { membershipPrice: 15 },
+);
+
 const { apiFetch } = useApi();
 const { show } = useToast();
 
@@ -12,10 +17,15 @@ const form = reactive({
 });
 
 const submitting = ref(false);
-const DEFAULT_NOTE = "Le paiement de 15€ se finalise sur place.";
+const defaultNote = computed(
+  () => `Le paiement de ${props.membershipPrice}€ se finalise sur place.`,
+);
 const feedback = ref<{ text: string; ok: boolean } | null>({
-  text: DEFAULT_NOTE,
+  text: defaultNote.value,
   ok: false,
+});
+watch(defaultNote, (note) => {
+  if (feedback.value && !feedback.value.ok) feedback.value.text = note;
 });
 const cardNum = ref("· · ·");
 const formEl = ref<HTMLFormElement | null>(null);
@@ -93,7 +103,7 @@ async function onSubmit() {
               <span>{{ cardName }}</span>
               <small>membre actif</small>
             </div>
-            <div class="card-id__seal">15€</div>
+            <div class="card-id__seal">{{ membershipPrice }}€</div>
           </div>
           <div class="card-id__foot">
             <span>LE BISTROT DE TATINA · ANNECY</span>
@@ -109,7 +119,7 @@ async function onSubmit() {
         </div>
         <h2 class="h-display">Une carte, une<br/><span class="hl">tribu de soudeurs.</span></h2>
         <p>
-          Pour <strong>15€ par an</strong>, vous rejoignez l'asso, vous accédez aux soirées privées,
+          Pour <strong>{{ membershipPrice }}€ par an</strong>, vous rejoignez l'asso, vous accédez aux soirées privées,
           vous recevez les programmes et, surtout, vous soutenez nos causes.
         </p>
 
@@ -145,7 +155,6 @@ async function onSubmit() {
             <legend>Je veux recevoir</legend>
             <label class="check"><input type="checkbox" checked /> <span>Le programme par email</span></label>
             <label class="check"><input type="checkbox" /> <span>Les rappels par SMS</span></label>
-            <label class="check"><input type="checkbox" /> <span>Les invitations aux apéros privés</span></label>
           </fieldset>
 
           <label class="check check--legal">
@@ -160,7 +169,7 @@ async function onSubmit() {
           <p
             v-if="feedback"
             class="form__note"
-            :class="{ 'is-ok': feedback.ok, 'is-err': !feedback.ok && feedback.text !== DEFAULT_NOTE }"
+            :class="{ 'is-ok': feedback.ok, 'is-err': !feedback.ok && feedback.text !== defaultNote }"
           >
             {{ feedback.text }}
           </p>

@@ -9,9 +9,9 @@ export function useAuth() {
     if (t) {
       try {
         const payload = JSON.parse(atob(t.split(".")[1]));
-        username.value = payload.username || "admin";
+        username.value = payload.username || null;
       } catch {
-        username.value = "admin";
+        username.value = null;
       }
     }
   }
@@ -21,9 +21,9 @@ export function useAuth() {
     token.value = newToken;
     try {
       const payload = JSON.parse(atob(newToken.split(".")[1]));
-      username.value = payload.username || "admin";
+      username.value = payload.username || null;
     } catch {
-      username.value = "admin";
+      username.value = null;
     }
   }
 

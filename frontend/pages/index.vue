@@ -83,6 +83,13 @@ const toggles = computed(() => ({
   fermeture: settingsData.value.toggle_fermeture === "true",
 }));
 
+// Montant de l'adhésion (défaut 15€)
+const membershipPrice = computed(() => {
+  const raw = settingsData.value.membership_price;
+  const n = Number(raw);
+  return Number.isFinite(n) && n > 0 ? n : 15;
+});
+
 // Scroll reveal (client)
 onMounted(() => {
   const revealEls = document.querySelectorAll(".reveal");
@@ -156,6 +163,7 @@ function animateCount(el: HTMLElement) {
     <SiteManifestSection />
     <SiteStorySection
       :member-count="memberCount"
+      :membership-price="membershipPrice"
       :show-transparence="toggles.transparency"
     />
     <SiteAgendaSection :events="upcomingEvents" />
@@ -163,6 +171,6 @@ function animateCount(el: HTMLElement) {
     <SiteConcertSection v-if="toggles.concerts" />
     <SiteInfosSection :settings="settingsData" />
     <SiteAssosSection :associations="assosList" />
-    <SiteAdhesionSection v-if="toggles.adhesion" />
+    <SiteAdhesionSection v-if="toggles.adhesion" :membership-price="membershipPrice" />
   </div>
 </template>

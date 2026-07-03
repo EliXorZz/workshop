@@ -64,7 +64,7 @@ onMounted(() => {
         </nav>
 
         <div class="admin-side__foot">
-          <span>Connecté · <b>{{ username || "admin" }}</b></span>
+          <span v-if="username">Connecté · <b>{{ username }}</b></span>
           <button @click="onLogout">Sortir</button>
         </div>
       </aside>

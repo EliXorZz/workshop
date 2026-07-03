@@ -57,7 +57,7 @@ async function save() {
     <div class="panel">
       <h3>Compte</h3>
       <form class="form" style="background: transparent; border: 0; box-shadow: none; padding: 0;">
-        <div class="field"><label>Identifiant</label><input type="text" :value="username || 'admin'" readonly /></div>
+        <div class="field"><label>Identifiant</label><input type="text" :value="username || ''" readonly /></div>
         <div class="field"><label>Nouveau mot de passe</label><input type="password" placeholder="••••••••" /></div>
         <button type="button" class="btn btn--yellow">Mettre à jour</button>
       </form>

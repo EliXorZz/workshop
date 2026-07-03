@@ -127,10 +127,9 @@ function visibleFilter(key: string) {
               <span class="event__mo">{{ ev.month }}</span>
             </div>
             <div class="event__main">
-              <span class="event__tag" :class="ev.tagClass">
-                {{ ev.label }}{{ ev.artist ? ` · ${ev.artist}` : "" }}
-              </span>
+              <span class="event__tag" :class="ev.tagClass">{{ ev.label }}</span>
               <h3>{{ ev.title }}</h3>
+              <div v-if="ev.artist" class="event__artist">{{ ev.artist }}</div>
               <p v-if="ev.description">{{ ev.description }}</p>
               <div v-if="ev.timeText" class="event__meta">
                 <span>{{ ev.timeText }}</span>
@@ -147,3 +146,14 @@ function visibleFilter(key: string) {
     </div>
   </section>
 </template>
+
+<style scoped>
+.event__artist {
+  font-family: var(--font-typewriter, monospace);
+  font-size: 13px;
+  color: var(--concrete, #E9E4DC);
+  opacity: 0.75;
+  margin: -4px 0 8px;
+  overflow-wrap: anywhere;
+}
+</style>

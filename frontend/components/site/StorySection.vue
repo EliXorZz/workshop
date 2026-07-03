@@ -1,7 +1,12 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ memberCount: number; showTransparence?: boolean }>(), {
-  showTransparence: true,
-});
+withDefaults(
+  defineProps<{
+    memberCount: number;
+    membershipPrice?: number;
+    showTransparence?: boolean;
+  }>(),
+  { membershipPrice: 15, showTransparence: true },
+);
 </script>
 
 <template>
@@ -44,7 +49,7 @@ withDefaults(defineProps<{ memberCount: number; showTransparence?: boolean }>(),
           <span class="stat__label">bénévoles</span>
         </div>
         <div class="stat reveal">
-          <span class="stat__value"><span class="counter" data-to="15">15</span><i>€</i></span>
+          <span class="stat__value"><span class="counter" :data-to="membershipPrice">{{ membershipPrice }}</span><i>€</i></span>
           <span class="stat__label">montant de l'adhésion</span>
         </div>
         <div class="stat reveal">

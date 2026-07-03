@@ -9,10 +9,10 @@ useHead({
 const { apiFetch } = useApi();
 const { login } = useAuth();
 
-const username = ref("admin");
+const username = ref("");
 const password = ref("");
 const submitting = ref(false);
-const note = ref({ text: "Identifiant et mot de passe fournis par l'équipe.", cls: "" });
+const note = ref({ text: "", cls: "" });
 
 onMounted(() => {
   if (sessionStorage.getItem("tatina_token")) {
@@ -54,7 +54,6 @@ async function onSubmit() {
             BT
           </div>
           <h1>Espace<br/>gestion</h1>
-          <p>Réservé à l'équipe du Bistrot de Tatina. Login unique, partagé par l'asso.</p>
         </div>
 
         <form class="form" novalidate @submit.prevent="onSubmit">
@@ -89,7 +88,7 @@ async function onSubmit() {
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="square"/></svg>
           </button>
 
-          <p class="form__note" :class="note.cls">{{ note.text }}</p>
+          <p v-if="note.text" class="form__note" :class="note.cls">{{ note.text }}</p>
         </form>
       </div>
     </div>

@@ -7,6 +7,7 @@ const settings = reactive<Record<string, string>>({
   contact_address: "",
   contact_phone: "",
   contact_email: "",
+  membership_price: "",
   footer_copyright: "",
   footer_baseline: "",
   footer_bilan_url: "",
@@ -58,6 +59,22 @@ async function save() {
           <div class="field"><label>Samedi</label><input v-model="settings.hours_samedi" type="text" /></div>
         </div>
         <div class="field"><label>Dimanche</label><input v-model="settings.hours_dimanche" type="text" /></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Adhésion</h3>
+      <div class="form" style="background: transparent; border: 0; box-shadow: none; padding: 0;">
+        <div class="field">
+          <label>Montant de la cotisation annuelle (€)</label>
+          <input
+            v-model="settings.membership_price"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="15"
+          />
+        </div>
       </div>
     </div>
 
