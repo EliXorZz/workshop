@@ -49,11 +49,11 @@ const [
   { data: stats },
   { data: settings },
 ] = await Promise.all([
-  useFetch<Event[]>("/events", { baseURL: apiBase, default: () => [] }),
-  useFetch<Record<string, MenuItem[]>>("/menu", { baseURL: apiBase, default: () => ({}) }),
-  useFetch<Association[]>("/associations", { baseURL: apiBase, default: () => [] }),
-  useFetch<Stats>("/public/stats", { baseURL: apiBase, default: () => ({ members: 0 }) }),
-  useFetch<Settings>("/settings", { baseURL: apiBase, default: () => ({}) }),
+  useFetch<Event[]>("/events", { baseURL: apiBase, key: "home-events", default: () => [] }),
+  useFetch<Record<string, MenuItem[]>>("/menu", { baseURL: apiBase, key: "home-menu", default: () => ({}) }),
+  useFetch<Association[]>("/associations", { baseURL: apiBase, key: "home-associations", default: () => [] }),
+  useFetch<Stats>("/public/stats", { baseURL: apiBase, key: "home-stats", default: () => ({ members: 0 }) }),
+  useFetch<Settings>("/settings", { baseURL: apiBase, key: "home-settings", default: () => ({}) }),
 ]);
 
 const upcomingEvents = computed(() => {
