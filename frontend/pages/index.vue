@@ -165,6 +165,7 @@ function animateCount(el: HTMLElement) {
       :member-count="memberCount"
       :membership-price="membershipPrice"
       :show-transparence="toggles.transparency"
+      :bilan-url="settingsData.footer_bilan_url"
     />
     <SiteAgendaSection :events="upcomingEvents" />
     <SiteMenuSection :menu="menuData" />

@@ -4,8 +4,9 @@ withDefaults(
     memberCount: number;
     membershipPrice?: number;
     showTransparence?: boolean;
+    bilanUrl?: string;
   }>(),
-  { membershipPrice: 15, showTransparence: true },
+  { membershipPrice: 15, showTransparence: true, bilanUrl: "" },
 );
 </script>
 
@@ -64,7 +65,7 @@ withDefaults(
         </div>
         <div>
           <strong>Transparence totale.</strong> Chaque année, les comptes de l'association sont rendus publics.
-          <a href="#" class="link-underline">Télécharger le bilan 2025 →</a>
+          <a :href="bilanUrl || '#'" :target="bilanUrl ? '_blank' : undefined" rel="noopener" class="link-underline">Télécharger le bilan 2025 →</a>
         </div>
       </div>
     </div>

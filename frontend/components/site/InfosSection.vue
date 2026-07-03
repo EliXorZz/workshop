@@ -55,6 +55,11 @@ const address = computed(() =>
 );
 
 const addressLines = computed(() => address.value.split("\n"));
+
+const mapsUrl = computed(() => {
+  const query = encodeURIComponent(address.value.replace(/\n/g, ", "));
+  return `https://www.google.com/maps/search/?api=1&query=${query}`;
+});
 </script>
 
 <template>
@@ -94,7 +99,7 @@ const addressLines = computed(() => address.value.split("\n"));
             <br />
             <em>Cherche les portes jaunes.</em>
           </p>
-          <a href="#" class="link-underline">Itinéraire (Maps) →</a>
+          <a :href="mapsUrl" target="_blank" rel="noopener" class="link-underline">Itinéraire (Maps) →</a>
         </div>
 
         <div class="infos__card reveal">
