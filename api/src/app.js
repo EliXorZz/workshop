@@ -92,6 +92,9 @@ app.use((req, res) => res.status(404).json({ error: "Route introuvable" }));
 
 // ── Erreur globale ───────────────────────────────────────────────
 app.use((err, req, res, _next) => {
+  if (err && err.code === "LIMIT_FILE_SIZE") {
+    return res.status(413).json({ error: "Fichier trop volumineux (max 300 Mo)" });
+  }
   console.error("Unhandled error:", err.message);
   res.status(500).json({ error: "Erreur interne du serveur" });
 });

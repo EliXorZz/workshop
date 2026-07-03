@@ -7,6 +7,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production
     traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
     traefik.ingress.kubernetes.io/router.middlewares: traefik-force-https@kubernetescrd
+    nginx.ingress.kubernetes.io/proxy-body-size: "300m"
 spec:
   ingressClassName: traefik
   tls:
